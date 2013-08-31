@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/rj/.config/fcitx/conf'
+let g:netrw_dirhist_2='/media/files/Downloads/CG/jiakai/ray-tracing/src/primitives'
+let g:netrw_dirhist_3='/media/files/Downloads/CG/jiakai/ray-tracing/src/include/geometry'
+let g:netrw_dirhist_4='/home/rj/.scripts/test'
+let g:netrw_dirhist_5='/media/files/Syncs/Dropbox/sophomore2/digital_design/handouts/platform/ps2_keyboard'
+let g:netrw_dirhist_6='/home/rj/.fluxbox'
+let g:netrw_dirhist_7='/home/rj/.vim/template/cpp'
