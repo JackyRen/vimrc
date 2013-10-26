@@ -377,6 +377,7 @@ vmap <c-i> <ESC>:call RunResult()<CR>
 let g:EchoFuncKeyNext='<Esc>='
 let g:EchoFuncKeyPrev='<Esc>-'
 
+
 "保存的时候自动加入author信息
 
 " ======= VimWiki ======= "
@@ -400,6 +401,31 @@ let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center
 "			\ 'html_footer': '/media/My_Document/Apps/Gvim/mysite/template/footer.html',
 "			\ 'auto_export': 1,
 "			\ 'nested_syntaxes': {'C': 'c', 'C++': 'cpp', 'Haskell': 'haskell', 'Ruby': 'ruby', 'SQL': 'sql', 'HTML': 'html', 'CSS': 'css', 'JavaScript': 'javascript', 'Vim': 'vim', 'Make': 'make'},}]
+
+
+" transfer/read and write one block of text between vim sessions
+" Usage:
+" `from' session:
+"     ma
+"     move to end-of-block
+"     xw
+"
+" `to' session:
+"     move to where I want block inserted
+"     xr
+"
+if has("unix")
+  nmap xr   :r $HOME/.vimxfer<CR>
+  nmap xw   :'a,.w! $HOME/.vimxfer<CR>
+  vmap xr   c<esc>:r $HOME/.vimxfer<CR>
+  vmap xw   :w! $HOME/.vimxfer<CR>
+else
+  nmap xr   :r c:/.vimxfer<CR>
+  nmap xw   :'a,.w! c:/.vimxfer<CR>
+  vmap xr   c<esc>:r c:/.vimxfer<cr>
+  vmap xw   :w! c:/.vimxfer<CR>
+endif
+"end
 
 
 set grepprg=grep\ -nH\ $*
@@ -507,6 +533,9 @@ Bundle 'echofunc.vim'
 Bundle 'vimtips.zip'
 Bundle 'a.vim'
 Bundle 'Shougo/neocomplcache.vim'
+
+Bundle 'elzr/vim-json'
+
 "==for javascript=="
 Bundle 'godlygeek/tabular.git'
 Bundle 'walm/jshint.vim.git'
