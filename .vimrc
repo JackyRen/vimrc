@@ -137,50 +137,50 @@ set tags+=~/.vim/tags/qt4
 map <c-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR> 
 noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
 inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
-" map jsbeautify to F4 "
-nnoremap <F4> :call g:Jsbeautify()<CR>  
+"" map jsbeautify to F4 "
+"nnoremap <F4> :call g:Jsbeautify()<CR>  
 
 
-" OmniCppComplete 
-let OmniCpp_NamespaceSearch = 1 
-let OmniCpp_GlobalScopeSearch = 1 
-let OmniCpp_ShowAccess = 1 
-let OmniCpp_MayCompleteDot = 1 
-let OmniCpp_MayCompleteArrow = 1 
-let OmniCpp_MayCompleteScope = 1 
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"] 
-" automatically open and close the popup menu / preview window 
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif 
-set completeopt=menuone,menu,longest,preview
-let g:SuperTabRetainCompletionType = 2
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>" 
-let g:AutoComplPop_MappingDriven = 0
-let g:acp_enableAtStartup = 1
-let g:acp_ignorecaseOption = 1
-let g:acp_completeOption = '.,w,b,k'
-" """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1 
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 1
-" set the max list in the popup menu. increase the speed
-let g:neocomplcache_max_list=20
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-	let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-let g:neocomplcache_auto_completion_start_length=1
-" ignore letter case
-let g:neocomplcache_enable_ignore_case=1
+"" OmniCppComplete 
+"let OmniCpp_NamespaceSearch = 1 
+"let OmniCpp_GlobalScopeSearch = 1 
+"let OmniCpp_ShowAccess = 1 
+"let OmniCpp_MayCompleteDot = 1 
+"let OmniCpp_MayCompleteArrow = 1 
+"let OmniCpp_MayCompleteScope = 1 
+"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"] 
+"" automatically open and close the popup menu / preview window 
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif 
+"set completeopt=menuone,menu,longest,preview
+"let g:SuperTabRetainCompletionType = 2
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>" 
+"let g:AutoComplPop_MappingDriven = 0
+"let g:acp_enableAtStartup = 1
+"let g:acp_ignorecaseOption = 1
+"let g:acp_completeOption = '.,w,b,k'
+"" """""""""""""""""""""""""""""configuration for neocomplcache""""""""""""""""""""""""""""
+"" Disable AutoComplPop.
+"let g:acp_enableAtStartup = 0
+"" Use neocomplcache.
+"let g:neocomplcache_enable_at_startup = 1 
+"" Use smartcase.
+"let g:neocomplcache_enable_smart_case = 1
+"" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+"" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+"" Set minimum syntax keyword length.
+"let g:neocomplcache_min_syntax_length = 1
+"" set the max list in the popup menu. increase the speed
+"let g:neocomplcache_max_list=20
+"" Define keyword.
+"if !exists('g:neocomplcache_keyword_patterns')
+"	let g:neocomplcache_keyword_patterns = {}
+"endif
+"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+"let g:neocomplcache_auto_completion_start_length=1
+"" ignore letter case
+"let g:neocomplcache_enable_ignore_case=1
 
 
 " For Haskell
@@ -364,14 +364,14 @@ endfunc
 "command CC call CompileCode()<CR>
 "command RUN call RunResult()<CR>
 " Ctrl + C 一键保存、编译
-map  <c-c> :call CompileCode()<CR>
-imap <c-c> <ESC>:call CompileCode()<CR>
-vmap <c-c> <ESC>:call CompileCode()<CR>
-
-" Ctrl + W 一键保存、运行
-map  <c-i> :call RunResult()<CR>
-imap <c-i> <ESC>:call RunResult()<CR>
-vmap <c-i> <ESC>:call RunResult()<CR>
+"map  <c-c> :call CompileCode()<CR>
+"imap <c-c> <ESC>:call CompileCode()<CR>
+"vmap <c-c> <ESC>:call CompileCode()<CR>
+"
+"" Ctrl + W 一键保存、运行
+"map  <c-i> :call RunResult()<CR>
+"imap <c-i> <ESC>:call RunResult()<CR>
+"vmap <c-i> <ESC>:call RunResult()<CR>
 
 "echofunc 配置
 let g:EchoFuncKeyNext='<Esc>='
@@ -524,7 +524,6 @@ Bundle 'taglist.vim'
 "Bundle 'vimim.vim'
 Bundle 'ZenCoding.vim'
 Bundle 'css_color.vim'
-Bundle 'hallettj/jslint.vim'
 Bundle 'gsession.vim'
 Bundle 'boost.vim'
 Bundle 'JackyRen/header.vim.git' 
@@ -536,13 +535,16 @@ Bundle 'Shougo/neocomplcache.vim'
 
 Bundle 'elzr/vim-json'
 
+"==auto complete==
+Bundle "Valloric/YouCompleteMe.git"
 "==for javascript=="
-Bundle 'godlygeek/tabular.git'
-Bundle 'walm/jshint.vim.git'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'pangloss/vim-javascript.git'
-Bundle 'myhere/vim-nodejs-complete.git'
-Bundle 'jsbeautify'
+"Bundle 'hallettj/jslint.vim'
+"Bundle 'godlygeek/tabular.git'
+"Bundle 'walm/jshint.vim.git'
+"Bundle 'scrooloose/syntastic.git'
+"Bundle 'pangloss/vim-javascript.git'
+"Bundle 'myhere/vim-nodejs-complete.git'
+"Bundle 'jsbeautify'
 "Bundle 'omnicppcomplete'
 "Bundle 'vim-scripts/header.vim.git' 
 "Bundle 'SuperTab'
