@@ -67,6 +67,7 @@ set history=100				"设置历史记录
 
 colorscheme elflord          " 着色模式
 set guifont=Monaco:h10       " 字体 && 字号
+set expandtab                " 将tab展开
 set tabstop=4                " 设置tab键的宽度
 set shiftwidth=4             " 换行时行间交错使用4个空格
 set autoindent               " 自动对齐
@@ -86,8 +87,8 @@ set nocompatible             " 关闭兼容模式
 set vb t_vb=                 " 关闭提示音
 "set cursorline              " 突出显示当前行
 set hidden                   " 允许在有未保存的修改时切换缓冲区
-set list                     " 显示Tab符，使用一高亮竖线代替
-set listchars=tab:\|\ ,
+"set list                     " 显示Tab符，使用一高亮竖线代替
+"set listchars=tab:\|\ ,
 
 syntax enable                " 打开语法高亮
 syntax on                    " 开启文件类型侦测
@@ -137,8 +138,8 @@ set tags+=~/.vim/tags/qt4
 map <c-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR> 
 noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
 inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
-"" map jsbeautify to F4 "
-"nnoremap <F4> :call g:Jsbeautify()<CR>  
+" map jsbeautify to F4 "
+nnoremap <F4> :call g:Jsbeautify()<CR>  
 
 
 "" OmniCppComplete 
@@ -452,6 +453,54 @@ endfunction
 """"""""""""""""""""""""end convert hex to dec"""""""""""""""""""""""'
 
 
+"<replace in all buffer
+function AllBuffers(cmnd)
+  let cmnd = a:cmnd
+  let i = 1
+  while (i <= bufnr("$"))
+    if bufexists(i)
+      execute "buffer" i
+      execute cmnd
+    endif
+    let i = i+1
+  endwhile
+endfun
+"replace in all buffer >
+
+
+
+" rotate_sig.vim
+" Maintainer:  Roel Vanhout <roel@2e-systems.com>
+" Version:     0.1
+" Last Change: Tuesday, June 12, 2001
+" Mapping I use:
+" nmap ,r :call RotateSig()<CR>
+" Usage:
+" -Make sure you delimit your sig with '-- ', or adjust the script
+" -Adjust the last execute to a command that prints a sig to stdout
+" Known problems:
+"   - You'll get an error message when you're below the last
+"     '^-- $' in your mail (nothing bad though - just an not-
+"     found marker)
+
+function! RotateSig()
+    normal mQG
+    execute '?^-- $'
+    execute ':nohl'
+    normal o<ESC>
+    normal dG
+    normal <CR>
+    execute 'r !~/bin/autosig ~/.quotes \%'
+    normal `Q
+endfunction
+
+
+"<YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"YouCompleteMe>
+
+
 "################## start Vundle ###############
 set nocompatible    " be iMproved
 "filetype off        " required!
@@ -460,6 +509,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 
+"<hdl_plugin
+"let g:HDL_Author = "rjjacky"   "默认值是我的名字
+"let g:HDL_Company = "THU"   "默认值为空""
+"hdl_plugin>
 
 " let Vundle manage Vundle
 "  " required! 
@@ -500,7 +553,7 @@ Bundle 'python_fold'
 
 " Indent
 "Bundle 'indent/html.vim'
-Bundle 'IndentAnything'
+"Bundle 'IndentAnything'
 Bundle 'Javascript-Indentation'
 Bundle 'mako.vim--Torborg'
 "Bundle 'gg/python.vim'
@@ -526,7 +579,7 @@ Bundle 'ZenCoding.vim'
 Bundle 'css_color.vim'
 Bundle 'gsession.vim'
 Bundle 'boost.vim'
-Bundle 'JackyRen/header.vim.git' 
+"Bundle 'JackyRen/header.vim.git' 
 Bundle 'asmx86_64'
 Bundle 'echofunc.vim'
 Bundle 'vimtips.zip'
@@ -544,11 +597,19 @@ Bundle "Valloric/YouCompleteMe.git"
 "Bundle 'scrooloose/syntastic.git'
 "Bundle 'pangloss/vim-javascript.git'
 "Bundle 'myhere/vim-nodejs-complete.git'
-"Bundle 'jsbeautify'
+Bundle 'jsbeautify'
 "Bundle 'omnicppcomplete'
 "Bundle 'vim-scripts/header.vim.git' 
 "Bundle 'SuperTab'
 "Bundle 'FredKSchott/CoVim'
+
+"Jade
+Bundle 'digitaltoad/vim-jade'
+"
+"<VHDL
+"Bundle 'hdl_plugin'
+Bundle 'vim-scripts/VHDL-indent-93-syntax'
+"VHDL>
 
 "################## end Vundle ###############
 
