@@ -1,20 +1,22 @@
-" -----------------   Author: Ruchee
-" -----------------    Email: my@ruchee.com
-" -----------------  WebSite: http://www.ruchee.com
-" -----------------     Date: 2012-04-01
-
+"========================================================================
+"   FileName: .vimrc
+"     Author: rjjacky
+"      Email: rjjacky@gmail.com
+"   HomePage: 
+" LastChange: 2013-11-07 09:03:51
+"========================================================================
 
 " Ctrl + H                   --光标移行首
 " Ctrl + J                   --光标移下一行行首
 " Ctrl + K                   --光标移上一行行尾
 " Ctrl + L                   --光标移行尾
 " Ctrl + Z                   --取代ESC模式键 [和部分软件的快捷键有冲突]
-" Ctrl + F                   --编译 [支持C/C++、Java、Haskell]
-" Ctrl + R                   --运行 [支持C/C++、Java、Haskell、Lua、Perl、Python、Ruby]
+"""""""" Ctrl + F                   --编译 [支持C/C++、Java、Haskell]
+"""""""" Ctrl + R                   --运行 [支持C/C++、Java、Haskell、Lua、Perl、Python、Ruby]
 " Ctrl + ]                   --转到函数定义
 " Ctrl + T                   --返回调用函数
 " Ctrl + E                   --添加注释 [插入模式] [添加的是C语言的多行注释，所以适用于C/C++/Java等]
-" Ctrl + E                   --一步加载语法模板和作者、时间信息 [非插入模式]
+" F3                         --加载作者、时间信息 [非插入模式]
 
 " <C-P>                      --单词补全
 " <C-X><C-L>                 --整行补全
@@ -71,7 +73,8 @@ set expandtab                " 将tab展开
 set tabstop=4                " 设置tab键的宽度
 set shiftwidth=4             " 换行时行间交错使用4个空格
 set autoindent               " 自动对齐
-set backspace=2              " 设置退格键可用
+"set backspace=2              " 设置退格键可用
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set cindent shiftwidth=4     " 自动缩进4空格
 set smartindent              " 智能自动缩进
 set ai!                      " 设置自动缩进
@@ -89,6 +92,11 @@ set vb t_vb=                 " 关闭提示音
 set hidden                   " 允许在有未保存的修改时切换缓冲区
 "set list                     " 显示Tab符，使用一高亮竖线代替
 "set listchars=tab:\|\ ,
+
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep"
 
 syntax enable                " 打开语法高亮
 syntax on                    " 开启文件类型侦测
@@ -225,6 +233,7 @@ function ClosePair(char)
 endf
 
 
+
 " MiniBufExplorer     多个文件切换 可使用鼠标双击相应文件名进行切换
 let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
@@ -239,6 +248,7 @@ let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 
 " TxtBrowser          高亮TXT文本文件
 au BufRead,BufNewFile *.txt setlocal ft=txt
+autocmd BufNewFile,BufReadPost *.jade set filetype=jade
 
 " :FencView           查看文件编码和更改文件编码
 let g:fencview_autodetect=1
@@ -247,9 +257,16 @@ let g:fencview_autodetect=1
 let g:template_path='/home/rj/.vim/template/'
 
 " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
-let g:vimrc_author='rjjacky'
-let g:vimrc_email='rjjacky@gmail.com'
-"let g:vimrc_homepage='http://www.ruchee.com'
+let g:vimrc_author='Jacky.Ren'
+let g:vimrc_email='rjjacky<at>gmail<dot>com'
+let g:vimrc_homepage='' 
+" nmap <F4> :AuthorInfoDetect<cr>
+" Ctrl + E            一步加载语法模板和作者、时间信息 [非插入模式]
+"map <c-a> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+"vmap <c-a> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
+map  <F3> <ESC>:AuthorInfoDetect<CR><ESC>
+vmap <F3> <ESC>:AuthorInfoDetect<CR><ESC>
+
 
 
 " Ctrl + H       
@@ -272,12 +289,8 @@ imap <c-e> <End>
 " Ctrl + Z            
 imap <c-z> <ESC>
 
-" Ctrl + E            一步加载语法模板和作者、时间信息 [非插入模式]
-" map <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-" vmap <c-e> <ESC>:LoadTemplate<CR><ESC>:AuthorInfoDetect<CR><ESC>Gi
-
-" Ctrl + E            在当前行添加C/C++/Java语言的多行注释 [插入模式]
-" imap <c-e> /*  */<ESC>hhi
+" Ctrl + c            在当前行添加C/C++/Java语言的多行注释 [插入模式]
+imap <c-c> /*  */<ESC>hhi
 
 " nt                  打开NERDTree [非插入模式]
 map nt :NERDTree<CR>
@@ -286,8 +299,13 @@ map nt :NERDTree<CR>
 map tl :Tlist<CR><c-l>
 
 
+
 " ======= 编译 && 运行 ======= "
 
+" make
+map  <F8> :make<CR>
+imap <F8> <ESC>:make<CR>
+vmap <F8> <ESC>:make<CR>
 " 编译C源文件
 func! CompileGcc()
 	exec "w"
@@ -374,6 +392,8 @@ endfunc
 "imap <c-i> <ESC>:call RunResult()<CR>
 "vmap <c-i> <ESC>:call RunResult()<CR>
 
+"
+"
 "echofunc 配置
 let g:EchoFuncKeyNext='<Esc>='
 let g:EchoFuncKeyPrev='<Esc>-'
@@ -611,6 +631,32 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'vim-scripts/VHDL-indent-93-syntax'
 "VHDL>
 
+"AuthorInfo
+Bundle 'vim-scripts/AuthorInfo'
+Bundle 'scrooloose/nerdcommenter'
 "################## end Vundle ###############
 
+"vimtips 79
 
+"The following function will make a :cwindow window with a line per function
+"in the current C source file. NOTE: It writes the file as a side effect.
+"
+"Invoke with ':call ShowFunc()'
+"You may want to do :nmap <somekey> :call ShowFunc()<CR>
+
+function! ShowFunc()
+    
+    let gf_s = &grepformat
+    let gp_s = &grepprg
+
+    let &grepformat = '%*\k%*\sfunction%*\s%l%*\s%f %*\s%m'
+    let &grepprg = 'ctags -x --c-types=f --sort=no -o -'
+
+    write
+    silent! grep %
+    cwindow
+
+    let &grepformat = gf_s
+    let &grepprg = gp_s
+
+endfunc
