@@ -71,6 +71,7 @@ colorscheme elflord          " 着色模式
 set guifont=Monaco:h10       " 字体 && 字号
 set expandtab                " 将tab展开
 set tabstop=4                " 设置tab键的宽度
+set softtabstop=4            " 设置tab键的宽度
 set shiftwidth=4             " 换行时行间交错使用4个空格
 set autoindent               " 自动对齐
 "set backspace=2              " 设置退格键可用
@@ -97,6 +98,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep"
+set showcmd        " display incomplete commands
 
 syntax enable                " 打开语法高亮
 syntax on                    " 开启文件类型侦测
@@ -105,7 +107,14 @@ filetype plugin on           " 针对不同的文件类型加载对应的插件
 filetype plugin indent on    " 启用自动补全
 
 set writebackup              " 设置无备份文件
+
 set nobackup
+"if has("vms")
+"    set nobackup        " do not keep a backup file, use versions instead
+"else
+"    set backup        " keep a backup file
+"endif
+
 set autochdir                " 设定文件浏览器目录为当前目录
 "set nowrap                  " 设置不自动换行
 set foldmethod=syntax        " 选择代码折叠类型
@@ -225,11 +234,11 @@ nnoremap ; :
 
 
 function ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
-	else
-		return a:char
-	endif
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
 endf
 
 
@@ -249,6 +258,15 @@ let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 " TxtBrowser          高亮TXT文本文件
 au BufRead,BufNewFile *.txt setlocal ft=txt
 autocmd BufNewFile,BufReadPost *.jade set filetype=jade
+autocmd BufNewFile,BufReadPost *.json set filetype=json
+autocmd BufNewFile,BufReadPost *.coffee set filetype=coffee
+autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
+autocmd BufNewFile,BufReadPost *.js set tabstop=2
+autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
+autocmd BufNewFile,BufReadPost .js set softtabstop=2
+
+" auto compile 
+au BufWritePost *.coffee call CompileCoffee()
 
 " :FencView           查看文件编码和更改文件编码
 let g:fencview_autodetect=1
@@ -290,7 +308,7 @@ imap <c-e> <End>
 imap <c-z> <ESC>
 
 " Ctrl + c            在当前行添加C/C++/Java语言的多行注释 [插入模式]
-imap <c-c> /*  */<ESC>hhi
+"imap <c-c> /*  */<ESC>hhi
 
 " nt                  打开NERDTree [非插入模式]
 map nt :NERDTree<CR>
@@ -308,76 +326,83 @@ imap <F8> <ESC>:make<CR>
 vmap <F8> <ESC>:make<CR>
 " 编译C源文件
 func! CompileGcc()
-	exec "w"
-	let compilecmd="!gcc -Wall -pedantic -std=c99 "
-	let compileflag="-o %<"
-	exec compilecmd." % ".compileflag
+    exec "w"
+    let compilecmd="!gcc -Wall -pedantic -std=c99 "
+    let compileflag="-o %<"
+    exec compilecmd." % ".compileflag
 endfunc
 
 " 编译C++源文件
 func! CompileCpp()
-	exec "w"
-	let compilecmd="!g++ -Wall -pedantic -std=c++98 "
-	let compileflag="-o %<"
-	exec compilecmd." % ".compileflag
+    exec "w"
+    let compilecmd="!g++ -Wall -pedantic -std=c++98 "
+    let compileflag="-o %<"
+    exec compilecmd." % ".compileflag
 endfunc
 
 " 编译Java源文件
 func! CompileJava()
-	exec "w"
-	exec "!javac %"
+    exec "w"
+    exec "!javac %"
 endfunc
+
+" 编译Coffee源文件
+func! CompileCoffee()
+    exec "w"
+    exec "!coffee -cb %"
+endfunc
+
 
 " 编译Haskell源文件
 func! CompileHaskell()
-	exec "w"
-	let compilecmd="!ghc --make "
-	let compileflag="-o %<"
-	exec compilecmd." % ".compileflag
+    exec "w"
+    let compilecmd="!ghc --make "
+    let compileflag="-o %<"
+    exec compilecmd." % ".compileflag
 endfunc
 
 " 根据文件类型自动选择相应的编译函数
 func! CompileCode()
-	exec "w"
-	if &filetype == "c"
-		exec "call CompileGcc()"
-	elseif &filetype == "cpp"
-		exec "call CompileCpp()"
-	elseif &filetype == "java"
-		exec "call CompileJava()"
-	elseif &filetype == "haskell"
-		exec "call CompileHaskell()"
-	elseif &filetype == "lua"
-		exec "!lua %<.lua"
-	elseif &filetype == "perl"
-		exec "!perl %<.pl"
-	elseif &filetype == "python"
-		exec "!python %<.py"
-	elseif &filetype == "ruby"
-		exec "!ruby %<.rb"
-	endif
+    exec "w"
+    if &filetype == "c"
+        exec "call CompileGcc()"
+    elseif &filetype == "cpp"
+        exec "call CompileCpp()"
+    elseif &filetype == "java"
+        exec "call CompileJava()"
+    elseif &filetype == "haskell"
+        exec "call CompileHaskell()"
+    elseif &filetype == "lua"
+        exec "!lua %<.lua"
+    elseif &filetype == "perl"
+        exec "!perl %<.pl"
+    elseif &filetype == "python"
+        exec "!python %<.py"
+    elseif &filetype == "ruby"
+        exec "!ruby %<.rb"
+    endif
 endfunc
 
 " 运行可执行文件
 func! RunResult()
-	exec "w"
-	if &filetype == "c"
-		exec "! ./%<"
-	elseif &filetype == "cpp"
-		exec "! ./%<"
-	elseif &filetype == "java"
-		exec "!java %<"
-	elseif &filetype == "haskell"
-		exec "! ./%<"
-	elseif &filetype == "lua"
-		exec "!lua %<.lua"
-	elseif &filetype == "perl"
-		exec "!perl %<.pl"
-	elseif &filetype == "python"
-		exec "!python %<.py"
-	elseif &filetype == "ruby"
-		exec "!ruby %<.rb"
-	endif
+    exec "w"
+    if &filetype == "c"
+        exec "! ./%<"
+    elseif &filetype == "cpp"
+        exec "! ./%<"
+    elseif &filetype == "java"
+        exec "!java %<"
+    elseif &filetype == "haskell"
+        exec "! ./%<"
+    elseif &filetype == "lua"
+        exec "!lua %<.lua"
+    elseif &filetype == "perl"
+        exec "!perl %<.pl"
+    elseif &filetype == "python"
+        exec "!python %<.py"
+    elseif &filetype == "ruby"
+        exec "!ruby %<.rb"
+    endif
 endfunc
 
 "command CC call CompileCode()<CR>
@@ -435,16 +460,20 @@ let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center
 "     move to where I want block inserted
 "     xr
 "
+"
+
 if has("unix")
-  nmap xr   :r $HOME/.vimxfer<CR>
-  nmap xw   :'a,.w! $HOME/.vimxfer<CR>
-  vmap xr   c<esc>:r $HOME/.vimxfer<CR>
-  vmap xw   :w! $HOME/.vimxfer<CR>
+    nmap xr   :r $HOME/.vimxfer<CR>
+    nmap xw   :'a,.w! $HOME/.vimxfer<CR>
+    nmap xc   :'a,.w! $HOME/.vimxfer<CR> :!xclip -sel clip < $HOME/.vimxfer<CR><CR>
+    vmap xr   c<esc>:r $HOME/.vimxfer<CR>
+    vmap xw   :w! $HOME/.vimxfer<CR>
+    vmap xc   :'a,.w! $HOME/.vimxfer<CR> :!xclip -sel clip < $HOME/.vimxfer<CR><CR>
 else
-  nmap xr   :r c:/.vimxfer<CR>
-  nmap xw   :'a,.w! c:/.vimxfer<CR>
-  vmap xr   c<esc>:r c:/.vimxfer<cr>
-  vmap xw   :w! c:/.vimxfer<CR>
+    nmap xr   :r c:/.vimxfer<CR>
+    nmap xw   :'a,.w! c:/.vimxfer<CR>
+    vmap xr   c<esc>:r c:/.vimxfer<cr>
+    vmap xw   :w! c:/.vimxfer<CR>
 endif
 "end
 
@@ -475,15 +504,15 @@ endfunction
 
 "<replace in all buffer
 function AllBuffers(cmnd)
-  let cmnd = a:cmnd
-  let i = 1
-  while (i <= bufnr("$"))
-    if bufexists(i)
-      execute "buffer" i
-      execute cmnd
-    endif
-    let i = i+1
-  endwhile
+    let cmnd = a:cmnd
+    let i = 1
+    while (i <= bufnr("$"))
+        if bufexists(i)
+            execute "buffer" i
+            execute cmnd
+        endif
+        let i = i+1
+    endwhile
 endfun
 "replace in all buffer >
 
@@ -517,6 +546,40 @@ endfunction
 
 "<YouCompleteMe
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+let g:EclimCompletionMethod = 'omnifunc'
+
+" preview
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,d,vim,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \ }
+nnoremap <Leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" }
+
+
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "YouCompleteMe>
 
@@ -552,6 +615,7 @@ Bundle 'JavaScript-syntax'
 Bundle 'moin.vim'
 Bundle 'python.vim--Vasiliev'
 Bundle 'xml.vim'
+Bundle 'mips.vim'
 
 "Auto Inplement
 Bundle 'tczengming/headerGatesAdd.vim'
@@ -559,9 +623,26 @@ Bundle 'tczengming/headerGatesAdd.vim'
 "doc
 "Bundle 'doxygen-support.vim'
 
+"markup file conversion
+Bundle 'vim-pandoc/vim-pandoc'
+let g:pandoc_no_folding = 1
+
+" vim outline of markdown
+Bundle 'vim-scripts/VOoM'
+
+"pinyin search
+Bundle "ppwwyyxx/vim-PinyinSearch"
+
+" sublime-like multi-cursor edit
+Bundle "terryma/vim-multiple-cursors"
+
+" ejs
+Bundle "briancollins/vim-jst"
+
+"python predict
+Bundle "rkulla/pydiction"
 
 " Color
-
 Bundle 'desert256.vim'
 Bundle 'Impact'
 Bundle 'matrix.vim'
@@ -570,6 +651,12 @@ Bundle 'vividchalk.vim'
 
 " Ftplugin
 Bundle 'python_fold'
+
+" html scaffold
+Bundle "Emmet.vim"
+
+
+Bundle "Lokaltog/vim-easymotion"
 
 " Indent
 "Bundle 'indent/html.vim'
@@ -608,6 +695,7 @@ Bundle 'Shougo/neocomplcache.vim'
 
 Bundle 'elzr/vim-json'
 
+
 "==auto complete==
 Bundle "Valloric/YouCompleteMe.git"
 "==for javascript=="
@@ -625,6 +713,10 @@ Bundle 'jsbeautify'
 
 "Jade
 Bundle 'digitaltoad/vim-jade'
+"
+"coffeejs
+Bundle 'kchmck/vim-coffee-script'
+"
 "
 "<VHDL
 "Bundle 'hdl_plugin'
@@ -645,7 +737,7 @@ Bundle 'scrooloose/nerdcommenter'
 "You may want to do :nmap <somekey> :call ShowFunc()<CR>
 
 function! ShowFunc()
-    
+
     let gf_s = &grepformat
     let gp_s = &grepprg
 
@@ -660,3 +752,135 @@ function! ShowFunc()
     let &grepprg = gp_s
 
 endfunc
+
+
+
+" Ensure all autocommands, functions and commands are included only once
+if !exists("header_protecter")
+    let header_protecter = 1
+
+    if has('persistent_undo')
+        set undofile
+        set undodir=~/.vimtmp/undo
+    endif
+
+
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
+
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
+
+    " set :make and some commands
+    auto FileType cpp let &makeprg="g++ % -o %:r -Wall -Wextra -O2 -std=c++11"
+    auto FileType c let &makeprg="gcc % -o %:r -Wall -Wextra -O2 -std=c++11"
+    auto FileType tex let &makeprg="make"
+
+    fun Make_arg(arg, ...)
+        let makeprg0 = &makeprg
+        let &makeprg = a:arg
+        for s in a:000
+            let &makeprg .= " " . s
+        endfor
+        make
+        let &makeprg = makeprg0
+    endfun
+
+    command -nargs=* Makegdb call Make_arg("g++ % -o %:r -ggdb -Wall -Wextra -std=c++11", <f-args>)
+    command -nargs=* Makepg call Make_arg("g++ % -o %:r -pg -Wall -Wextra -std=c++11", <f-args>)
+    command -nargs=* TryCompile call Make_arg("g++ % -o /tmp/vim_try_compile -Wall -Wextra -c -std=c++11", <f-args>)
+    command -nargs=* Makedebug call Make_arg("g++ % -o %:r -g -Wall -Wextra -DDEBUG -D__DEBUG_BUILD -std=c++11", <f-args>)
+
+
+    " Automatically updates the time and date in the head of the file
+    autocmd BufWritePre,FileWritePre *   call LastMod()
+    fun LastMod()
+        let ll = line(".")
+        let l = line("$")
+        let c = col(".")
+        if l > 50
+            let l = 50
+        endif
+        execute '1,' . l . 'substitute/' . '^\(.*\$Date:\).*$' . '/\1 ' . strftime('%a %b %d %H:%M:%S %Y %z') . '/e'
+        execute '1,' . l . 'substitute/' . '^\(.*\$File:\).*$' . '/\1 ' . expand('<afile>:t') . '/e'
+
+        let l = line("$")
+        if l > 50
+            let l = 50
+        endif
+        execute '1,' . l . 's/\(【日期】\).*$' . '/\1 ' . strftime('%a %b %d %H:%M:%S %Y %z') . '/e'
+        call cursor(ll, c)
+    endfun
+endif
+
+
+let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+nmap <Leader>ps :call PinyinSearch()<CR>
+nnoremap ? :call PinyinSearch()<CR>
+nmap <Leader>pn :call PinyinNext()<CR>
+let g:PinyinSearch_Dict = $HOME . "/.vim/bundle/vim-PinyinSearch/PinyinSearch.dict"
+
+
+" {{{make
+func Make()                        " silent make with quickfix window popup
+    if &ft == 'cpp'
+        if filereadable(getcwd() . "/Makefile")
+            let &makeprg="make"
+        elseif  filereadable(getcwd() . "/../Makefile")
+            let &makeprg="make -C .."
+        endif
+    endif
+    make
+    " silent make ?
+    redraw!
+    for i in getqflist()
+        if i['valid']
+            cwin | winc p | return
+        endif
+    endfor
+endfunc
+
+func FindMakefile()
+    exec "cd " . expand ("%:p:h")
+    while ! filereadable(getcwd() . "/Makefile") && getcwd () != "/"
+        cd ..
+    endw
+    :!make
+endfunc
+au Filetype gnuplot let &makeprg="gnuplot % ; feh ./*"
+au Filetype dot let &makeprg="dot -Tpng -O -v % ; feh %.png"
+au Filetype php let &makeprg="php %"
+au Filetype r let &makeprg="R <% --vanilla"
+func InstantRun()
+    if &ft == 'python'
+        if matchstr(getline(1), 'python2') == ""
+            :!python %
+        else | :!python2 %
+		endif
+    elseif &ft == 'ruby' | :!ruby %
+    elseif &ft == 'sh' | :!bash %
+    elseif &ft == 'cpp' | :!gdb -tui %<
+    elseif &ft == 'java' | :! javac % && echo "Compilation succeed" && java %<
+    elseif &ft == 'javascript' | :! node %
+    elseif &ft == 'tex' | :! xelatex %
+    elseif &ft == 'lisp' | :! sbcl --script %
+    elseif &ft == 'coffee' | :! coffee %
+	elseif &ft == 'asm' | :! as % -o %<.o --32 && ld %<.o -o %< -m elf_i386
+	else | call Make() | endif
+endfunc
+nnoremap <Leader>rr :call InstantRun() <CR>
+nnoremap <Leader>mk :call Make()<CR>
+nnoremap <Leader>mr :!make run <CR>
+nnoremap <Leader>make :call FindMakefile()<CR>
+" }}}
