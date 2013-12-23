@@ -63,6 +63,168 @@
 " ?                          --弹出帮助菜单
 " q                          --退出该插件
 
+"################## start Vundle ###############
+set nocompatible    " be iMproved
+"filetype off        " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+
+"<hdl_plugin
+"let g:HDL_Author = "rjjacky"   "默认值是我的名字
+"let g:HDL_Company = "THU"   "默认值为空""
+"hdl_plugin>
+
+" let Vundle manage Vundle
+"  " required! 
+Bundle 'gmarik/vundle'
+"
+
+" My Bundles here:
+
+" vim-scripts repos
+
+" Syntax
+Bundle 'asciidoc.vim'
+Bundle 'confluencewiki.vim'
+Bundle 'html5.vim'
+Bundle 'JavaScript-syntax'
+"Bundle 'mako.vim'
+Bundle 'moin.vim'
+Bundle 'python.vim--Vasiliev'
+Bundle 'xml.vim'
+Bundle 'mips.vim'
+
+"Auto Inplement
+Bundle 'tczengming/headerGatesAdd.vim'
+
+"doc
+"Bundle 'doxygen-support.vim'
+
+"markup file conversion
+Bundle 'vim-pandoc/vim-pandoc'
+let g:pandoc_no_folding = 1
+
+" vim outline of markdown
+Bundle 'vim-scripts/VOoM'
+
+"pinyin search
+Bundle "ppwwyyxx/vim-PinyinSearch"
+
+" sublime-like multi-cursor edit
+Bundle "terryma/vim-multiple-cursors"
+
+" ejs
+Bundle "briancollins/vim-jst"
+
+"python predict
+Bundle "rkulla/pydiction"
+
+" Color
+Bundle 'desert256.vim'
+Bundle 'Impact'
+Bundle 'matrix.vim'
+Bundle 'vibrantink'
+Bundle 'vividchalk.vim'
+
+" Ftplugin
+Bundle 'python_fold'
+
+" html scaffold
+Bundle "Emmet.vim"
+
+
+Bundle "Lokaltog/vim-easymotion"
+
+" Indent
+"Bundle 'indent/html.vim'
+"Bundle 'IndentAnything'
+Bundle 'Javascript-Indentation'
+Bundle 'mako.vim--Torborg'
+"Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Yggdroot/indentLine'
+"Bundle 'gg/python.vim'
+"
+"git relate
+Bundle "airblade/vim-gitgutter"
+Bundle "gregsexton/gitv"
+
+"quick surround
+Bundle "tpope/vim-commentary"
+Bundle "tpope/vim-surround"
+
+"quick (de)comment 
+Bundle "Raimondi/delimitMate"
+
+" Plugin
+Bundle 'The-NERD-tree'
+Bundle 'AutoClose--Alves'
+Bundle 'auto_mkdir'
+Bundle 'cecutil'
+Bundle 'fcitx.vim'
+Bundle 'FencView.vim'
+"Bundle 'FuzzyFinder'
+Bundle 'L9'
+Bundle 'Mark'
+Bundle 'mru.vim'
+Bundle 'The-NERD-Commenter'
+"Bundle 'project.vim'
+Bundle 'restart.vim'
+Bundle 'taglist.vim'
+"Bundle 'templates.vim'
+"Bundle 'vimim.vim'
+Bundle 'ZenCoding.vim'
+Bundle 'css_color.vim'
+Bundle 'gsession.vim'
+Bundle 'boost.vim'
+"Bundle 'JackyRen/header.vim.git' 
+Bundle 'asmx86_64'
+Bundle 'echofunc.vim'
+Bundle 'vimtips.zip'
+Bundle 'a.vim'
+Bundle 'Shougo/neocomplcache.vim'
+
+
+"==auto complete==
+Bundle "Valloric/YouCompleteMe.git"
+"==for javascript=="
+"Bundle 'hallettj/jslint.vim'
+"Bundle 'godlygeek/tabular.git'
+"Bundle 'walm/jshint.vim.git'
+Bundle 'scrooloose/syntastic.git'
+"Bundle 'pangloss/vim-javascript.git'
+"Bundle 'myhere/vim-nodejs-complete.git'
+Bundle 'jsbeautify'
+"Bundle 'omnicppcomplete'
+"Bundle 'vim-scripts/header.vim.git' 
+"Bundle 'SuperTab'
+"Bundle 'FredKSchott/CoVim'
+"
+Bundle 'michalliu/sourcebeautify.vim'
+
+"json
+Bundle 'elzr/vim-json'
+"Jade
+Bundle 'digitaltoad/vim-jade'
+"
+"coffeejs
+Bundle 'kchmck/vim-coffee-script'
+"
+"
+"<VHDL
+"Bundle 'hdl_plugin'
+Bundle 'vim-scripts/VHDL-indent-93-syntax'
+"VHDL>
+
+"AuthorInfo
+Bundle 'vim-scripts/AuthorInfo'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'vim-scripts/DrawIt'
+"################## end Vundle ###############
+
+
+
 set history=100				"设置历史记录
 
 
@@ -158,6 +320,17 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
 " map jsbeautify to F4 "
 nnoremap <F4> :call g:Jsbeautify()<CR>  
 
+"print 
+if has('unix')
+    set printencoding=utf-8
+    set printmbcharset=iso10646
+    set printfont=Microsoft_Yahei_Mono
+    set printmbfont=r:Microsoft_Yahei_Mono
+elseif has('win32')
+    "very dirty ,but works
+endif
+
+
 
 "" OmniCppComplete 
 "let OmniCpp_NamespaceSearch = 1 
@@ -227,6 +400,7 @@ nnoremap <F4> :call g:Jsbeautify()<CR>
 
 "=========快速进入命令模式============"
 nnoremap ; :
+vmap ; :
 
 
 " enter auto indent" 
@@ -255,18 +429,6 @@ let Tlist_Exit_OnlyWindow=1                  " 如果Taglist窗口是最后一�
 let Tlist_Use_Right_Window=1                 " 在右侧窗口中显示
 let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 
-" TxtBrowser          高亮TXT文本文件
-au BufRead,BufNewFile *.txt setlocal ft=txt
-autocmd BufNewFile,BufReadPost *.jade set filetype=jade
-autocmd BufNewFile,BufReadPost *.json set filetype=json
-autocmd BufNewFile,BufReadPost *.coffee set filetype=coffee
-autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
-autocmd BufNewFile,BufReadPost *.js set tabstop=2
-autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
-autocmd BufNewFile,BufReadPost .js set softtabstop=2
-
-" auto compile 
-au BufWritePost *.coffee call CompileCoffee()
 
 " :FencView           查看文件编码和更改文件编码
 let g:fencview_autodetect=1
@@ -350,6 +512,12 @@ endfunc
 func! CompileCoffee()
     exec "w"
     exec "!coffee -cb %"
+endfunc
+
+func! CompileThcoMips()
+    exec "w"
+    exec "!ThinpadAssembler % %.bin"
+    exec "!cp %.bin bin"
 endfunc
 
 
@@ -466,9 +634,11 @@ if has("unix")
     nmap xr   :r $HOME/.vimxfer<CR>
     nmap xw   :'a,.w! $HOME/.vimxfer<CR>
     nmap xc   :'a,.w! $HOME/.vimxfer<CR> :!xclip -sel clip < $HOME/.vimxfer<CR><CR>
+
     vmap xr   c<esc>:r $HOME/.vimxfer<CR>
     vmap xw   :w! $HOME/.vimxfer<CR>
     vmap xc   :'a,.w! $HOME/.vimxfer<CR> :!xclip -sel clip < $HOME/.vimxfer<CR><CR>
+
 else
     nmap xr   :r c:/.vimxfer<CR>
     nmap xw   :'a,.w! c:/.vimxfer<CR>
@@ -477,6 +647,15 @@ else
 endif
 "end
 
+
+map ej :previous<cr>
+map ek :next<cr>
+
+"hex and ascii converter
+nmap h2r :%!xxd -r<CR>
+nmap r2h :%!xxd<CR>
+vmap h2r <esc>:%!xxd -r<CR>
+vmap r2h <esc>:%!xxd<CR>
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
@@ -584,150 +763,6 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "YouCompleteMe>
 
 
-"################## start Vundle ###############
-set nocompatible    " be iMproved
-"filetype off        " required!
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-
-"<hdl_plugin
-"let g:HDL_Author = "rjjacky"   "默认值是我的名字
-"let g:HDL_Company = "THU"   "默认值为空""
-"hdl_plugin>
-
-" let Vundle manage Vundle
-"  " required! 
-Bundle 'gmarik/vundle'
-"
-
-" My Bundles here:
-
-" vim-scripts repos
-
-" Syntax
-Bundle 'asciidoc.vim'
-Bundle 'confluencewiki.vim'
-Bundle 'html5.vim'
-Bundle 'JavaScript-syntax'
-"Bundle 'mako.vim'
-Bundle 'moin.vim'
-Bundle 'python.vim--Vasiliev'
-Bundle 'xml.vim'
-Bundle 'mips.vim'
-
-"Auto Inplement
-Bundle 'tczengming/headerGatesAdd.vim'
-
-"doc
-"Bundle 'doxygen-support.vim'
-
-"markup file conversion
-Bundle 'vim-pandoc/vim-pandoc'
-let g:pandoc_no_folding = 1
-
-" vim outline of markdown
-Bundle 'vim-scripts/VOoM'
-
-"pinyin search
-Bundle "ppwwyyxx/vim-PinyinSearch"
-
-" sublime-like multi-cursor edit
-Bundle "terryma/vim-multiple-cursors"
-
-" ejs
-Bundle "briancollins/vim-jst"
-
-"python predict
-Bundle "rkulla/pydiction"
-
-" Color
-Bundle 'desert256.vim'
-Bundle 'Impact'
-Bundle 'matrix.vim'
-Bundle 'vibrantink'
-Bundle 'vividchalk.vim'
-
-" Ftplugin
-Bundle 'python_fold'
-
-" html scaffold
-Bundle "Emmet.vim"
-
-
-Bundle "Lokaltog/vim-easymotion"
-
-" Indent
-"Bundle 'indent/html.vim'
-"Bundle 'IndentAnything'
-Bundle 'Javascript-Indentation'
-Bundle 'mako.vim--Torborg'
-"Bundle 'gg/python.vim'
-
-" Plugin
-Bundle 'The-NERD-tree'
-Bundle 'AutoClose--Alves'
-Bundle 'auto_mkdir'
-Bundle 'cecutil'
-Bundle 'fcitx.vim'
-Bundle 'FencView.vim'
-"Bundle 'FuzzyFinder'
-Bundle 'L9'
-Bundle 'Mark'
-Bundle 'mru.vim'
-Bundle 'The-NERD-Commenter'
-"Bundle 'project.vim'
-Bundle 'restart.vim'
-Bundle 'taglist.vim'
-"Bundle 'templates.vim'
-"Bundle 'vimim.vim'
-Bundle 'ZenCoding.vim'
-Bundle 'css_color.vim'
-Bundle 'gsession.vim'
-Bundle 'boost.vim'
-"Bundle 'JackyRen/header.vim.git' 
-Bundle 'asmx86_64'
-Bundle 'echofunc.vim'
-Bundle 'vimtips.zip'
-Bundle 'a.vim'
-Bundle 'Shougo/neocomplcache.vim'
-
-Bundle 'elzr/vim-json'
-
-
-"==auto complete==
-Bundle "Valloric/YouCompleteMe.git"
-"==for javascript=="
-"Bundle 'hallettj/jslint.vim'
-"Bundle 'godlygeek/tabular.git'
-"Bundle 'walm/jshint.vim.git'
-"Bundle 'scrooloose/syntastic.git'
-"Bundle 'pangloss/vim-javascript.git'
-"Bundle 'myhere/vim-nodejs-complete.git'
-Bundle 'jsbeautify'
-"Bundle 'omnicppcomplete'
-"Bundle 'vim-scripts/header.vim.git' 
-"Bundle 'SuperTab'
-"Bundle 'FredKSchott/CoVim'
-
-"Jade
-Bundle 'digitaltoad/vim-jade'
-"
-"coffeejs
-Bundle 'kchmck/vim-coffee-script'
-"
-"
-"<VHDL
-"Bundle 'hdl_plugin'
-Bundle 'vim-scripts/VHDL-indent-93-syntax'
-"VHDL>
-
-"AuthorInfo
-Bundle 'vim-scripts/AuthorInfo'
-Bundle 'scrooloose/nerdcommenter'
-"################## end Vundle ###############
-
 "vimtips 79
 
 "The following function will make a :cwindow window with a line per function
@@ -735,6 +770,10 @@ Bundle 'scrooloose/nerdcommenter'
 "
 "Invoke with ':call ShowFunc()'
 "You may want to do :nmap <somekey> :call ShowFunc()<CR>
+
+"vimtips 98
+"disable hlsearch
+nmap <silent> <C-N> :silent noh<CR>
 
 function! ShowFunc()
 
@@ -764,6 +803,29 @@ if !exists("header_protecter")
         set undodir=~/.vimtmp/undo
     endif
 
+    " TxtBrowser          高亮TXT文本文件
+    au BufRead,BufNewFile *.txt setlocal ft=txt
+    autocmd BufNewFile,BufReadPost *.jade set tabstop=2
+    autocmd BufNewFile,BufReadPost *.jade set softtabstop=2
+    "autocmd BufNewFile,BufReadPost *.json set filetype=json
+    "autocmd BufNewFile,BufReadPost *.coffee set filetype=coffee
+    autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
+    autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2
+
+    "autocmd BufNewFile,BufReadPost *.js set tabstop=2
+    "autocmd BufNewFile,BufReadPost .js set softtabstop=2
+    
+    autocmd BufNewFile,BufReadPost *.thcos set filetype=mips
+
+    autocmd BufNewFile,BufReadPost *.rule set filetype=json
+    autocmd BufNewFile,BufReadPost *.rule set tabstop=2
+    autocmd BufNewFile,BufReadPost *.rule set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.rule set shiftwidth=2
+    " auto compile 
+    au BufWritePost *.coffee call CompileCoffee()
+    au BufWritePost *.thcos call CompileThcoMips()
+
 
     " Enable file type detection.
     " Use the default filetype settings, so that mail gets 'tw' set to 72,
@@ -773,6 +835,8 @@ if !exists("header_protecter")
 
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
+    highlight OverLength ctermbg=blue ctermfg=white guibg=#592929
+    match OverLength /\%81v.\+/
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -867,7 +931,7 @@ func InstantRun()
         if matchstr(getline(1), 'python2') == ""
             :!python %
         else | :!python2 %
-		endif
+        endif
     elseif &ft == 'ruby' | :!ruby %
     elseif &ft == 'sh' | :!bash %
     elseif &ft == 'cpp' | :!gdb -tui %<
@@ -876,11 +940,212 @@ func InstantRun()
     elseif &ft == 'tex' | :! xelatex %
     elseif &ft == 'lisp' | :! sbcl --script %
     elseif &ft == 'coffee' | :! coffee %
-	elseif &ft == 'asm' | :! as % -o %<.o --32 && ld %<.o -o %< -m elf_i386
-	else | call Make() | endif
+    elseif &ft == 'asm' | :! as % -o %<.o --32 && ld %<.o -o %< -m elf_i386
+    else | call Make() | endif
 endfunc
 nnoremap <Leader>rr :call InstantRun() <CR>
 nnoremap <Leader>mk :call Make()<CR>
 nnoremap <Leader>mr :!make run <CR>
 nnoremap <Leader>make :call FindMakefile()<CR>
 " }}}
+"
+"
+"
+"
+
+
+"VimTip	 99: How to tell what syntax highlighting group *that* is!
+"http://vim.sourceforge.net/tip_view.php?tip_id=
+"
+"Here's a (what should be a one-line) map to help you tell just what
+"syntax highlighting groups the item under the cursor actually is:
+
+"map  <F10>  :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+"Once known you can override the current highlighting with whatever you want.
+"If you're debugging a syntax highlighting file (a rare occupation), sometimes
+"you'll wish to know the entire chain of syntax highlighting.  For that,
+"check out
+
+"VimTip 110
+"auto make html with text
+
+func Table()
+    let end=line("'>")
+    let start=line("'<")
+    let i=start
+
+    wh i <= end
+        exe ":" . i
+        let e=Empty()
+        if e == 1
+            exe "normal I</tr><tr>"
+        else
+            exe "normal I<td>A</td>>>"
+        endif
+        let i=i+1
+    endwh
+
+    exe "normal o</tr></table><<"
+    exe ":" . start
+    exe "normal O<table><tr><<"
+endfunc
+
+autocmd BufNewFile,BufReadPost *.html vmap <F5> <ESC>:call Table()<CR>
+
+func Empty()
+    let line_nr= line (".")
+    let a=getline ( line_nr )
+    let m=match(a, "\\S")
+    if m == -1 
+        return 1
+    else
+        return 0
+    endif
+endfunc
+"end of VimTip 110
+"
+vmap <F6> :hardcopy > /tmp/%.ps <CR>
+nmap <F6> :hardcopy > /tmp/%.ps <CR>
+imap <F6> <ESC>:hardcopy > /tmp/%.ps <CR>
+
+
+"vimtips 117
+
+map _u :call ID_search()<Bar>execute "/\\<" . g:word . "\\>"<CR>
+map _n :n<Bar>execute "/\\<" . g:word . "\\>"<CR>
+
+function ID_search()
+    let g:word = expand("<cword>")
+    let x = system("lid --key=none ". g:word)
+    let x = substitute(x, "\n", " ", "g")
+    execute "next ". x
+endfun
+"end of tips 117
+
+"VimTip	 124: Number a group of lines
+"http://vim.sourceforge.net/tip_view.php?tip_id=
+"
+"Below is a way to number a set of lines.  Here is an exaple before and after sna
+"pshot:
+"
+"apple
+"bob
+"pear
+"tree
+"
+"1 apple
+"2 bob
+"3 pear
+"4 tree
+
+" Description:
+" This provides a command and a function.  They both can be called with or
+" without a range.  In addition, they can be called with or without
+" arguments.  Without a range they operate on the current line.
+"
+" There are two supported arguments.  They are described below:
+"     arg1 -> the number to start at.  The default is one.  This will
+"             number your selected lines sequentially.  The start can be a
+"             number, ., $, or, 'x (like getline).
+"     arg2 -> Text to append after numbers.  The default is a space.
+"
+" Examples:
+"     To provide your functionality:
+"         :%Nlist 20
+"         :%call Nlist(20)
+"     To make a list start at 1:
+"         :'<,'>Nlist
+"         :'<,'>call Nlist()
+"     To number the whole buffer (with it's actual line number):
+"         :%Nlist
+"         :%call Nlist()
+"     To number a subset of lines with their line number (and put a '] ' in
+"     front of every number):
+"         :'<,'>Nlist . ]\
+"         :'<,'>call Nlist(".", "] ")
+
+command! -nargs=* -range Nlist <line1>,<line2>call Nlist(<f-args>)
+function! Nlist(...) range
+    if 2 == a:0
+        let start = a:1
+        let append = a:2
+    elseif 1 == a:0
+        let start = a:1 
+        let append = " "
+    else
+        let start = 1
+        let append = " "
+    endif
+
+    " try to work like getline (i.e. allow the user to pass in . $ or 'x)
+    if 0 == (start + 0)
+        let start = line(start)
+    endif
+
+    exe a:firstline . "," . a:lastline . 's/^/\=line(".")-a:firstline+start.append/'
+endfunction
+
+"for vim-plugin : sourceBeautify
+au BufRead,BufNewFile *.json setf json 
+
+
+"VimTip	 127: Preview HTML files quickly
+"http://vim.sourceforge.net/tip_view.php?tip_id=
+"
+"I've found while writing HTML files that it can become cumbersome when I have to
+" switch to a web browser, load my page, and move back to VIM regularly to previe
+"w what I've written.  I've come up with the following tricks.
+"
+"The first one requires that you have lynx (the text-based browser) installed on 
+"your computer (available from http://lynx.isc.org/release/).  If your HTML page 
+"is primarily text, with few (if any) images, you can set up the following functi
+"on and mapping:
+
+   function PreviewHTML_TextOnly()
+      let l:fname = expand("%:p" )
+      new
+      set buftype=nofile nonumber
+      exe "%!lynx " . l:fname . " -dump -nolist -underscore -width " . winwidth(
+ 0 )
+   endfunction
+
+   map <Leader>pt  :call PreviewHTML_TextOnly()<CR>
+
+"This will open a new window and display your formatted HTML document in that win
+"dow.  Note that bold-face, italics, links, etc. will be lost -- all you will see
+" is the text -- but the "-underscore" parameter to Lynx causes any text that wou
+"ld have been bold, italicized, or underlined to be displayed like _this_.
+"
+"The other trick requires that vim be running on your current machine, and that y
+"ou be running a GUI of some sort (X-Windows, Windows, etc.).  You can cause vim 
+"to invoke your favorite browser and have it display the file, like this:
+   function PreviewHTML_External()
+      exe "silent !mozilla -remote \"openurl(file://" . expand( "%:p" ) . ")\""
+   endfunction
+
+   map <Leader>pp :call PreviewHTML_External()<CR>
+"If you don't use mozilla, you will need to modify the function to use your prefe
+"rred browser.
+"
+"Happy vimming!
+"
+"
+ 
+"setup of indent guides
+"hi IndentGuidesOdd  ctermbg=black
+"hi IndentGuidesEven ctermbg=darkgrey
+"hi IndentGuidesOdd  ctermbg=white
+"hi IndentGuidesEven ctermbg=lightgrey
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+"
+"indent line
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#A4E57E'
+map <leader>il :IndentLinesToggle<CR>
+
+"audo comment
+autocmd FileType python,shell set commentstring=#\ %s                 " 设置Python注释字符
+autocmd FileType mako set cms=##\ %s"

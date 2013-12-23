@@ -2,13 +2,14 @@ LIBRARY IEEE ;
 USE IEEE.STD_LOGIC_1164.ALL ; 
 USE IEEE.STD_LOGIC_ARITH.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL ; 
+USE work.GlobalDefines.ALL;
 
-entity <your-name> is 
+entity <name> is 
 	port(
 		); 
-end <your-name>;
+end <name>;
 
-architecture bhv of <your-name> is 
+architecture bhv of <name> is 
 	component <bla> is
 		port(
 		);
