@@ -291,9 +291,6 @@ set whichwrap=b,s,<,>,[,]	"光标移动
 
 set autowrite				"自动保存
 
-" 每行超过80个的字符用下划线标示
-au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim 2match Underlined /.\%81v/
-
 
 " 设置编码
 set fenc=utf-8
@@ -414,6 +411,14 @@ function ClosePair(char)
         return a:char
     endif
 endf
+
+
+function HighlightMorethan80()
+    autocmd FileType text setlocal textwidth=78
+    highlight OverLength ctermbg=blue ctermfg=white guibg=#592929
+    match OverLength /\%81v.\+/
+endf
+
 
 
 
@@ -813,6 +818,11 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2
 
+
+    autocmd BufNewFile,BufReadPost *.cpp set tabstop=3
+    autocmd BufNewFile,BufReadPost *.cpp set softtabstop=3
+    autocmd BufNewFile,BufReadPost *.cpp set shiftwidth=3
+
     "autocmd BufNewFile,BufReadPost *.js set tabstop=2
     "autocmd BufNewFile,BufReadPost .js set softtabstop=2
     
@@ -834,10 +844,10 @@ if !exists("header_protecter")
     filetype plugin indent on
 
     " For all text files set 'textwidth' to 78 characters.
-    autocmd FileType text setlocal textwidth=78
-    highlight OverLength ctermbg=blue ctermfg=white guibg=#592929
-    match OverLength /\%81v.\+/
-
+    " 每行超过80个的字符用下划线标示
+    "au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
+    au BufRead,BufNewFile *.asm,*.c,*.java,*.cs,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
+    
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
     " (happens when dropping a file on gvim).
