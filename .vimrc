@@ -112,6 +112,9 @@ Bundle 'vim-scripts/VOoM'
 "pinyin search
 Bundle "ppwwyyxx/vim-PinyinSearch"
 
+"search
+Bundle "rking/ag.vim"
+
 " sublime-like multi-cursor edit
 Bundle "terryma/vim-multiple-cursors"
 
@@ -147,8 +150,8 @@ Bundle 'Yggdroot/indentLine'
 "Bundle 'gg/python.vim'
 "
 "git relate
-Bundle "airblade/vim-gitgutter"
-Bundle "gregsexton/gitv"
+"Bundle "airblade/vim-gitgutter"
+"Bundle "gregsexton/gitv"
 
 "quick surround
 Bundle "tpope/vim-commentary"
@@ -823,6 +826,10 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.cpp set softtabstop=3
     autocmd BufNewFile,BufReadPost *.cpp set shiftwidth=3
 
+    autocmd BufNewFile,BufReadPost *.h set tabstop=3
+    autocmd BufNewFile,BufReadPost *.h set softtabstop=3
+    autocmd BufNewFile,BufReadPost *.h set shiftwidth=3
+
     "autocmd BufNewFile,BufReadPost *.js set tabstop=2
     "autocmd BufNewFile,BufReadPost .js set softtabstop=2
     
@@ -846,7 +853,7 @@ if !exists("header_protecter")
     " For all text files set 'textwidth' to 78 characters.
     " 每行超过80个的字符用下划线标示
     "au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
-    au BufRead,BufNewFile *.asm,*.c,*.java,*.cs,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
+    au BufRead,BufNewFile *.asm,*.c,*.java,*.cs,*.lua,*.pl,*.pm,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
     
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -1159,3 +1166,5 @@ map <leader>il :IndentLinesToggle<CR>
 "audo comment
 autocmd FileType python,shell set commentstring=#\ %s                 " 设置Python注释字符
 autocmd FileType mako set cms=##\ %s"
+
+nmap YY maxw
