@@ -214,6 +214,9 @@ Bundle 'digitaltoad/vim-jade'
 "coffeejs
 Bundle 'kchmck/vim-coffee-script'
 "
+"yaml
+Bundle "stephpy/vim-yaml"
+
 "
 "<VHDL
 "Bundle 'hdl_plugin'
@@ -520,6 +523,11 @@ endfunc
 func! CompileCoffee()
     exec "w"
     exec "!coffee -cb %"
+endfunc
+
+func! CompileMarkdown()
+    exec "w"
+    exec "!pandoc % > %.html"
 endfunc
 
 func! CompileThcoMips()
@@ -830,6 +838,11 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.h set softtabstop=3
     autocmd BufNewFile,BufReadPost *.h set shiftwidth=3
 
+    autocmd BufNewFile,BufReadPost *.yaml set tabstop=4
+    autocmd BufNewFile,BufReadPost *.yaml set softtabstop=4
+    autocmd BufNewFile,BufReadPost *.yaml set shiftwidth=4
+
+
     "autocmd BufNewFile,BufReadPost *.js set tabstop=2
     "autocmd BufNewFile,BufReadPost .js set softtabstop=2
     
@@ -841,6 +854,7 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.rule set shiftwidth=2
     " auto compile 
     au BufWritePost *.coffee call CompileCoffee()
+    au BufWritePost *.md call CompileMarkdown()
     au BufWritePost *.thcos call CompileThcoMips()
 
 
@@ -853,7 +867,7 @@ if !exists("header_protecter")
     " For all text files set 'textwidth' to 78 characters.
     " 每行超过80个的字符用下划线标示
     "au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
-    au BufRead,BufNewFile *.asm,*.c,*.java,*.cs,*.lua,*.pl,*.pm,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
+    au BufRead,BufNewFile *.asm,*.java,*.cs,*.lua,*.pl,*.pm,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
     
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -1168,3 +1182,7 @@ autocmd FileType python,shell set commentstring=#\ %s                 " 设置Py
 autocmd FileType mako set cms=##\ %s"
 
 nmap YY maxw
+
+"swithing between files
+"nmap <C-Tab> <C-w>w
+"nmap <C-S-Tab><C-w>W
