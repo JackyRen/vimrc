@@ -89,12 +89,12 @@ Bundle 'gmarik/vundle'
 Bundle 'asciidoc.vim'
 Bundle 'confluencewiki.vim'
 Bundle 'html5.vim'
-Bundle 'JavaScript-syntax'
+"Bundle 'JavaScript-syntax'
 "Bundle 'mako.vim'
 Bundle 'moin.vim'
 Bundle 'python.vim--Vasiliev'
 Bundle 'xml.vim'
-Bundle 'mips.vim'
+"Bundle 'mips.vim'
 
 "Auto Inplement
 Bundle 'tczengming/headerGatesAdd.vim'
@@ -103,8 +103,8 @@ Bundle 'tczengming/headerGatesAdd.vim'
 "Bundle 'doxygen-support.vim'
 
 "markup file conversion
-Bundle 'vim-pandoc/vim-pandoc'
-let g:pandoc_no_folding = 1
+"Bundle 'vim-pandoc/vim-pandoc'
+"let g:pandoc_no_folding = 1
 
 " vim outline of markdown
 Bundle 'vim-scripts/VOoM'
@@ -119,7 +119,7 @@ Bundle "rking/ag.vim"
 Bundle "terryma/vim-multiple-cursors"
 
 " ejs
-Bundle "briancollins/vim-jst"
+"Bundle "briancollins/vim-jst"
 
 "python predict
 Bundle "rkulla/pydiction"
@@ -135,7 +135,7 @@ Bundle 'vividchalk.vim'
 Bundle 'python_fold'
 
 " html scaffold
-Bundle "Emmet.vim"
+"Bundle "Emmet.vim"
 
 
 Bundle "Lokaltog/vim-easymotion"
@@ -143,10 +143,10 @@ Bundle "Lokaltog/vim-easymotion"
 " Indent
 "Bundle 'indent/html.vim'
 "Bundle 'IndentAnything'
-Bundle 'Javascript-Indentation'
-Bundle 'mako.vim--Torborg'
+"Bundle 'Javascript-Indentation'
+"Bundle 'mako.vim--Torborg'
 "Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Yggdroot/indentLine'
+"Bundle 'Yggdroot/indentLine'
 "Bundle 'gg/python.vim'
 "
 "git relate
@@ -195,10 +195,10 @@ Bundle "Valloric/YouCompleteMe.git"
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'godlygeek/tabular.git'
 "Bundle 'walm/jshint.vim.git'
-Bundle 'scrooloose/syntastic.git'
+"Bundle 'scrooloose/syntastic.git'
 "Bundle 'pangloss/vim-javascript.git'
 "Bundle 'myhere/vim-nodejs-complete.git'
-Bundle 'jsbeautify'
+"Bundle 'jsbeautify'
 "Bundle 'omnicppcomplete'
 "Bundle 'vim-scripts/header.vim.git' 
 "Bundle 'SuperTab'
@@ -209,15 +209,17 @@ Bundle 'michalliu/sourcebeautify.vim'
 "json
 Bundle 'elzr/vim-json'
 "Jade
-Bundle 'digitaltoad/vim-jade'
+"Bundle 'digitaltoad/vim-jade'
 "
 "coffeejs
-Bundle 'kchmck/vim-coffee-script'
+"Bundle 'kchmck/vim-coffee-script'
 "
+"yaml
+Bundle "stephpy/vim-yaml"
 "
 "<VHDL
 "Bundle 'hdl_plugin'
-Bundle 'vim-scripts/VHDL-indent-93-syntax'
+"Bundle 'vim-scripts/VHDL-indent-93-syntax'
 "VHDL>
 
 "AuthorInfo
@@ -820,6 +822,7 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2
+
 
 
     autocmd BufNewFile,BufReadPost *.cpp set tabstop=3
