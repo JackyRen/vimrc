@@ -1,5 +1,7 @@
-import argparse
+#!/usr/bin/env python2
+# -*- coding: UTF-8 -*-
 
+import argparse
 def get_args():
     #    description = 'given documents, train tf-idf model. ' + \                
     #            'see help for input spec.'                                       
@@ -20,6 +22,8 @@ def get_args():
     parser.add_argument('-o', '--output',required = True,
             help = 'output data file')
 
+    return parser.parse_args()
+
 
 def main():
     args = get_args()
@@ -27,3 +31,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
