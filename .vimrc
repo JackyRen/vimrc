@@ -444,7 +444,7 @@ let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 let g:fencview_autodetect=1
 
 " :LoadTemplate       根据文件后缀自动加载模板
-let g:template_path='/home/rj/.vim/template/'
+let g:template_path='/home/renjie/.vim/template/'
 
 " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
 let g:vimrc_author='Jacky.Ren'
