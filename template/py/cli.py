@@ -21,6 +21,9 @@ def get_args():
             help = 'input data file ')
     parser.add_argument('-o', '--output',required = True,
             help = 'output data file')
+    parser.add_argument('--tuple_line',action='store_true',dest="tuple_line",
+            help='enable this if every line is a tuple')
+
 
     return parser.parse_args()
 
