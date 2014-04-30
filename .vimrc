@@ -87,14 +87,14 @@ Bundle 'gmarik/vundle'
 
 " Syntax
 Bundle 'asciidoc.vim'
-Bundle 'confluencewiki.vim'
-Bundle 'html5.vim'
-Bundle 'JavaScript-syntax'
+"Bundle 'confluencewiki.vim'
+"Bundle 'html5.vim'
+"Bundle 'JavaScript-syntax'
 "Bundle 'mako.vim'
-Bundle 'moin.vim'
-Bundle 'python.vim--Vasiliev'
-Bundle 'xml.vim'
-Bundle 'mips.vim'
+"Bundle 'moin.vim'
+"Bundle 'python.vim--Vasiliev'
+"Bundle 'xml.vim'
+"Bundle 'mips.vim'
 
 "Auto Inplement
 Bundle 'tczengming/headerGatesAdd.vim'
@@ -103,8 +103,8 @@ Bundle 'tczengming/headerGatesAdd.vim'
 "Bundle 'doxygen-support.vim'
 
 "markup file conversion
-Bundle 'vim-pandoc/vim-pandoc'
-let g:pandoc_no_folding = 1
+"Bundle 'vim-pandoc/vim-pandoc'
+"let g:pandoc_no_folding = 1
 
 " vim outline of markdown
 Bundle 'vim-scripts/VOoM'
@@ -132,10 +132,10 @@ Bundle 'vibrantink'
 Bundle 'vividchalk.vim'
 
 " Ftplugin
-Bundle 'python_fold'
+"Bundle 'python_fold'
 
 " html scaffold
-Bundle "Emmet.vim"
+"Bundle "Emmet.vim"
 
 
 Bundle "Lokaltog/vim-easymotion"
@@ -162,16 +162,16 @@ Bundle "Raimondi/delimitMate"
 
 " Plugin
 Bundle 'The-NERD-tree'
+Bundle 'The-NERD-Commenter'
 Bundle 'AutoClose--Alves'
 Bundle 'auto_mkdir'
 Bundle 'cecutil'
 Bundle 'fcitx.vim'
 Bundle 'FencView.vim'
 "Bundle 'FuzzyFinder'
-Bundle 'L9'
-Bundle 'Mark'
-Bundle 'mru.vim'
-Bundle 'The-NERD-Commenter'
+"Bundle 'L9'
+"Bundle 'Mark'
+"Bundle 'mru.vim'
 "Bundle 'project.vim'
 Bundle 'restart.vim'
 Bundle 'taglist.vim'
@@ -194,17 +194,17 @@ Bundle "Valloric/YouCompleteMe.git"
 "==for javascript=="
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'godlygeek/tabular.git'
-"Bundle 'walm/jshint.vim.git'
+Bundle 'walm/jshint.vim.git'
 Bundle 'scrooloose/syntastic.git'
 "Bundle 'pangloss/vim-javascript.git'
-"Bundle 'myhere/vim-nodejs-complete.git'
-Bundle 'jsbeautify'
+Bundle 'myhere/vim-nodejs-complete.git'
+"Bundle 'jsbeautify'
 "Bundle 'omnicppcomplete'
 "Bundle 'vim-scripts/header.vim.git' 
 "Bundle 'SuperTab'
 "Bundle 'FredKSchott/CoVim'
 "
-Bundle 'michalliu/sourcebeautify.vim'
+"Bundle 'michalliu/sourcebeautify.vim'
 
 "json
 Bundle 'elzr/vim-json'
@@ -220,13 +220,19 @@ Bundle "stephpy/vim-yaml"
 "
 "<VHDL
 "Bundle 'hdl_plugin'
-Bundle 'vim-scripts/VHDL-indent-93-syntax'
+"Bundle 'vim-scripts/VHDL-indent-93-syntax'
 "VHDL>
 
 "AuthorInfo
 Bundle 'vim-scripts/AuthorInfo'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/DrawIt'
+
+"math
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 "################## end Vundle ###############
 
 
@@ -829,6 +835,16 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2
 
+    autocmd BufNewFile,BufReadPost *.js set autoindent
+    autocmd BufNewFile,BufReadPost *.js set tabstop=2
+    autocmd BufNewFile,BufReadPost *.js set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.js set shiftwidth=2
+
+    autocmd BufNewFile,BufReadPost *.yml set autoindent
+    autocmd BufNewFile,BufReadPost *.yml set tabstop=2
+    autocmd BufNewFile,BufReadPost *.yml set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.yml set shiftwidth=2
+
 
     autocmd BufNewFile,BufReadPost *.cpp set tabstop=3
     autocmd BufNewFile,BufReadPost *.cpp set softtabstop=3
@@ -842,9 +858,8 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.yaml set softtabstop=4
     autocmd BufNewFile,BufReadPost *.yaml set shiftwidth=4
 
+    autocmd BufNewFile,BufReadPost *.zone set noexpandtab
 
-    "autocmd BufNewFile,BufReadPost *.js set tabstop=2
-    "autocmd BufNewFile,BufReadPost .js set softtabstop=2
     
     autocmd BufNewFile,BufReadPost *.thcos set filetype=mips
 
@@ -854,7 +869,7 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.rule set shiftwidth=2
     " auto compile 
     au BufWritePost *.coffee call CompileCoffee()
-    au BufWritePost *.md call CompileMarkdown()
+    "au BufWritePost *.md call CompileMarkdown()
     au BufWritePost *.thcos call CompileThcoMips()
 
 
