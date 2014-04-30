@@ -119,7 +119,7 @@ Bundle "rking/ag.vim"
 Bundle "terryma/vim-multiple-cursors"
 
 " ejs
-Bundle "briancollins/vim-jst"
+"Bundle "briancollins/vim-jst"
 
 "python predict
 Bundle "rkulla/pydiction"
@@ -143,10 +143,10 @@ Bundle "Lokaltog/vim-easymotion"
 " Indent
 "Bundle 'indent/html.vim'
 "Bundle 'IndentAnything'
-Bundle 'Javascript-Indentation'
-Bundle 'mako.vim--Torborg'
+"Bundle 'Javascript-Indentation'
+"Bundle 'mako.vim--Torborg'
 "Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Yggdroot/indentLine'
+"Bundle 'Yggdroot/indentLine'
 "Bundle 'gg/python.vim'
 "
 "git relate
@@ -194,10 +194,10 @@ Bundle "Valloric/YouCompleteMe.git"
 "==for javascript=="
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'godlygeek/tabular.git'
-Bundle 'walm/jshint.vim.git'
-Bundle 'scrooloose/syntastic.git'
+"Bundle 'walm/jshint.vim.git'
+"Bundle 'scrooloose/syntastic.git'
 "Bundle 'pangloss/vim-javascript.git'
-Bundle 'myhere/vim-nodejs-complete.git'
+"Bundle 'myhere/vim-nodejs-complete.git'
 "Bundle 'jsbeautify'
 "Bundle 'omnicppcomplete'
 "Bundle 'vim-scripts/header.vim.git' 
@@ -209,14 +209,13 @@ Bundle 'myhere/vim-nodejs-complete.git'
 "json
 Bundle 'elzr/vim-json'
 "Jade
-Bundle 'digitaltoad/vim-jade'
+"Bundle 'digitaltoad/vim-jade'
 "
 "coffeejs
-Bundle 'kchmck/vim-coffee-script'
+"Bundle 'kchmck/vim-coffee-script'
 "
 "yaml
 Bundle "stephpy/vim-yaml"
-
 "
 "<VHDL
 "Bundle 'hdl_plugin'
@@ -451,7 +450,7 @@ let Tlist_File_Fold_Auto_Close=1             " 自动折叠
 let g:fencview_autodetect=1
 
 " :LoadTemplate       根据文件后缀自动加载模板
-let g:template_path='/home/rj/.vim/template/'
+let g:template_path='$HOME/.vim/template/'
 
 " :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter && authorinfo的结合
 let g:vimrc_author='Jacky.Ren'
@@ -844,6 +843,7 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.yml set tabstop=2
     autocmd BufNewFile,BufReadPost *.yml set softtabstop=2
     autocmd BufNewFile,BufReadPost *.yml set shiftwidth=2
+
 
 
     autocmd BufNewFile,BufReadPost *.cpp set tabstop=3
