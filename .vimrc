@@ -234,6 +234,9 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 "################## end Vundle ###############
 
+Bundle "vimwiki/vimwiki"
+Bundle "matthias-guenther/hammer.vim"
+
 
 
 set history=100				"设置历史记录
@@ -629,13 +632,13 @@ let g:vimwiki_camel_case = 0
 " 声明可以在wiki里面使用的HTML标签
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h4,h5,h6,pre'
 
-"let g:vimwiki_list = [{
-"			\ 'path': '/media/My_Document/Apps/Gvim/mysite/wiki',
-"			\ 'path_html': '/media/My_Document/Apps/Gvim/mysite/html/',
-"			\ 'html_header': '/media/My_Document/Apps/Gvim/mysite/template/header.html',
-"			\ 'html_footer': '/media/My_Document/Apps/Gvim/mysite/template/footer.html',
-"			\ 'auto_export': 1,
-"			\ 'nested_syntaxes': {'C': 'c', 'C++': 'cpp', 'Haskell': 'haskell', 'Ruby': 'ruby', 'SQL': 'sql', 'HTML': 'html', 'CSS': 'css', 'JavaScript': 'javascript', 'Vim': 'vim', 'Make': 'make'},}]
+let g:vimwiki_list = [{
+			\ 'path': '/home/rj/projects/mywiki/wiki',
+			\ 'path_html': '/home/rj/projects/mywiki/wiki_html',
+			\ 'html_header': '/home/rj/projects/mywiki/template/header.html',
+			\ 'html_footer': '/home/rj/projects/mywiki/template/footer.html',
+			\ 'auto_export': 0,
+			\ 'nested_syntaxes': {'C': 'c', 'C++': 'cpp', 'Haskell': 'haskell', 'Ruby': 'ruby', 'SQL': 'sql', 'HTML': 'html', 'CSS': 'css', 'JavaScript': 'javascript', 'Vim': 'vim', 'Make': 'make'},}]
 
 
 " transfer/read and write one block of text between vim sessions
