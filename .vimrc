@@ -190,7 +190,8 @@ Bundle 'Shougo/neocomplcache.vim'
 
 
 "==auto complete==
-Bundle "Valloric/YouCompleteMe.git"
+"Bundle "Valloric/YouCompleteMe.git"
+Bundle "vim-scripts/LanguageTool"
 "==for javascript=="
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'godlygeek/tabular.git'
@@ -209,10 +210,10 @@ Bundle "Valloric/YouCompleteMe.git"
 "json
 Bundle 'elzr/vim-json'
 "Jade
-"Bundle 'digitaltoad/vim-jade'
+Bundle 'digitaltoad/vim-jade'
 "
 "coffeejs
-"Bundle 'kchmck/vim-coffee-script'
+Bundle 'kchmck/vim-coffee-script'
 "
 "yaml
 Bundle "stephpy/vim-yaml"
@@ -831,6 +832,7 @@ if !exists("header_protecter")
     au BufRead,BufNewFile *.txt setlocal ft=txt
     autocmd BufNewFile,BufReadPost *.jade set tabstop=2
     autocmd BufNewFile,BufReadPost *.jade set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.jade set shiftwidth=2
     "autocmd BufNewFile,BufReadPost *.json set filetype=json
     "autocmd BufNewFile,BufReadPost *.coffee set filetype=coffee
     autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
@@ -870,6 +872,14 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.rule set tabstop=2
     autocmd BufNewFile,BufReadPost *.rule set softtabstop=2
     autocmd BufNewFile,BufReadPost *.rule set shiftwidth=2
+
+    autocmd BufNewFile,BufReadPost *.tex set expandtab
+    autocmd BufNewFile,BufReadPost *.tex set tabstop=4
+    autocmd BufNewFile,BufReadPost *.tex set softtabstop=4
+    autocmd BufNewFile,BufReadPost *.tex set shiftwidth=2
+    " auto compile 
+    au BufWritePost *.coffee call CompileCoffee()
+    "au BufWritePost *.md call CompileMarkdown()
     " auto compile 
     au BufWritePost *.coffee call CompileCoffee()
     "au BufWritePost *.md call CompileMarkdown()
@@ -1200,6 +1210,8 @@ autocmd FileType python,shell set commentstring=#\ %s                 " 设置Py
 autocmd FileType mako set cms=##\ %s"
 
 nmap YY maxw
+
+let g:languatetool_jar='/usr/share/java/languagetool/languagetool-commandline.jar'
 
 "swithing between files
 "nmap <C-Tab> <C-w>w
