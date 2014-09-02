@@ -853,8 +853,6 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.rule set softtabstop=2
     autocmd BufNewFile,BufReadPost *.rule set shiftwidth=2
     " auto compile 
-    au BufWritePost *.coffee call CompileCoffee()
-    au BufWritePost *.md call CompileMarkdown()
     au BufWritePost *.thcos call CompileThcoMips()
 
 
