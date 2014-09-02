@@ -11,6 +11,7 @@
 " Ctrl + K                   --光标移上一行行尾
 " Ctrl + L                   --光标移行尾
 " Ctrl + Z                   --取代ESC模式键 [和部分软件的快捷键有冲突]
+" original c-z is suspend
 """""""" Ctrl + F                   --编译 [支持C/C++、Java、Haskell]
 """""""" Ctrl + R                   --运行 [支持C/C++、Java、Haskell、Lua、Perl、Python、Ruby]
 " Ctrl + ]                   --转到函数定义
@@ -332,6 +333,7 @@ inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
 " map jsbeautify to F4 "
 nnoremap <F4> :call g:Jsbeautify()<CR>  
 
+
 "print 
 if has('unix')
     set printencoding=utf-8
@@ -488,6 +490,7 @@ imap <c-e> <End>
 
 " Ctrl + Z            
 imap <c-z> <ESC>
+nmap <c-z> <ESC>
 
 " Ctrl + c            在当前行添加C/C++/Java语言的多行注释 [插入模式]
 "imap <c-c> /*  */<ESC>hhi
