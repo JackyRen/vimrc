@@ -87,13 +87,13 @@ Bundle 'gmarik/vundle'
 
 " Syntax
 Bundle 'asciidoc.vim'
-Bundle 'confluencewiki.vim'
-Bundle 'html5.vim'
+"Bundle 'confluencewiki.vim'
+"Bundle 'html5.vim'
 "Bundle 'JavaScript-syntax'
 "Bundle 'mako.vim'
-Bundle 'moin.vim'
-Bundle 'python.vim--Vasiliev'
-Bundle 'xml.vim'
+"Bundle 'moin.vim'
+"Bundle 'python.vim--Vasiliev'
+"Bundle 'xml.vim'
 "Bundle 'mips.vim'
 
 "Auto Inplement
@@ -132,7 +132,7 @@ Bundle 'vibrantink'
 Bundle 'vividchalk.vim'
 
 " Ftplugin
-Bundle 'python_fold'
+"Bundle 'python_fold'
 
 " html scaffold
 "Bundle "Emmet.vim"
@@ -162,16 +162,16 @@ Bundle "Raimondi/delimitMate"
 
 " Plugin
 Bundle 'The-NERD-tree'
+Bundle 'The-NERD-Commenter'
 Bundle 'AutoClose--Alves'
 Bundle 'auto_mkdir'
 Bundle 'cecutil'
 Bundle 'fcitx.vim'
 Bundle 'FencView.vim'
 "Bundle 'FuzzyFinder'
-Bundle 'L9'
-Bundle 'Mark'
-Bundle 'mru.vim'
-Bundle 'The-NERD-Commenter'
+"Bundle 'L9'
+"Bundle 'Mark'
+"Bundle 'mru.vim'
 "Bundle 'project.vim'
 Bundle 'restart.vim'
 Bundle 'taglist.vim'
@@ -179,7 +179,7 @@ Bundle 'taglist.vim'
 "Bundle 'vimim.vim'
 Bundle 'ZenCoding.vim'
 Bundle 'css_color.vim'
-Bundle 'gsession.vim'
+"Bundle 'gsession.vim'
 Bundle 'boost.vim'
 "Bundle 'JackyRen/header.vim.git' 
 Bundle 'asmx86_64'
@@ -191,6 +191,7 @@ Bundle 'Shougo/neocomplcache.vim'
 
 "==auto complete==
 Bundle "Valloric/YouCompleteMe.git"
+Bundle "vim-scripts/LanguageTool"
 "==for javascript=="
 "Bundle 'hallettj/jslint.vim'
 "Bundle 'godlygeek/tabular.git'
@@ -204,15 +205,15 @@ Bundle "Valloric/YouCompleteMe.git"
 "Bundle 'SuperTab'
 "Bundle 'FredKSchott/CoVim'
 "
-Bundle 'michalliu/sourcebeautify.vim'
+"Bundle 'michalliu/sourcebeautify.vim'
 
 "json
 Bundle 'elzr/vim-json'
 "Jade
-"Bundle 'digitaltoad/vim-jade'
+Bundle 'digitaltoad/vim-jade'
 "
 "coffeejs
-"Bundle 'kchmck/vim-coffee-script'
+Bundle 'kchmck/vim-coffee-script'
 "
 "yaml
 Bundle "stephpy/vim-yaml"
@@ -226,7 +227,16 @@ Bundle "stephpy/vim-yaml"
 Bundle 'vim-scripts/AuthorInfo'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/DrawIt'
+
+"math
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 "################## end Vundle ###############
+
+Bundle "vimwiki/vimwiki"
+Bundle "matthias-guenther/hammer.vim"
 
 
 
@@ -240,10 +250,10 @@ set expandtab                " 将tab展开
 set tabstop=4                " 设置tab键的宽度
 set softtabstop=4            " 设置tab键的宽度
 set shiftwidth=4             " 换行时行间交错使用4个空格
+set cindent shiftwidth=4     " 自动缩进4空格
 set autoindent               " 自动对齐
 "set backspace=2              " 设置退格键可用
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
-set cindent shiftwidth=4     " 自动缩进4空格
 set smartindent              " 智能自动缩进
 set ai!                      " 设置自动缩进
 set nu!                      " 显示行号
@@ -623,13 +633,13 @@ let g:vimwiki_camel_case = 0
 " 声明可以在wiki里面使用的HTML标签
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h4,h5,h6,pre'
 
-"let g:vimwiki_list = [{
-"			\ 'path': '/media/My_Document/Apps/Gvim/mysite/wiki',
-"			\ 'path_html': '/media/My_Document/Apps/Gvim/mysite/html/',
-"			\ 'html_header': '/media/My_Document/Apps/Gvim/mysite/template/header.html',
-"			\ 'html_footer': '/media/My_Document/Apps/Gvim/mysite/template/footer.html',
-"			\ 'auto_export': 1,
-"			\ 'nested_syntaxes': {'C': 'c', 'C++': 'cpp', 'Haskell': 'haskell', 'Ruby': 'ruby', 'SQL': 'sql', 'HTML': 'html', 'CSS': 'css', 'JavaScript': 'javascript', 'Vim': 'vim', 'Make': 'make'},}]
+let g:vimwiki_list = [{
+			\ 'path': '/home/rj/projects/mywiki/wiki',
+			\ 'path_html': '/home/rj/projects/mywiki/wiki_html',
+			\ 'html_header': '/home/rj/projects/mywiki/template/header.html',
+			\ 'html_footer': '/home/rj/projects/mywiki/template/footer.html',
+			\ 'auto_export': 0,
+			\ 'nested_syntaxes': {'C': 'c', 'C++': 'cpp', 'Haskell': 'haskell', 'Ruby': 'ruby', 'SQL': 'sql', 'HTML': 'html', 'CSS': 'css', 'JavaScript': 'javascript', 'Vim': 'vim', 'Make': 'make'},}]
 
 
 " transfer/read and write one block of text between vim sessions
@@ -822,37 +832,55 @@ if !exists("header_protecter")
     au BufRead,BufNewFile *.txt setlocal ft=txt
     autocmd BufNewFile,BufReadPost *.jade set tabstop=2
     autocmd BufNewFile,BufReadPost *.jade set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.jade set shiftwidth=2
     "autocmd BufNewFile,BufReadPost *.json set filetype=json
     "autocmd BufNewFile,BufReadPost *.coffee set filetype=coffee
     autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2
 
+    autocmd BufNewFile,BufReadPost *.js set autoindent
+    autocmd BufNewFile,BufReadPost *.js set tabstop=2
+    autocmd BufNewFile,BufReadPost *.js set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.js set shiftwidth=2
+
+    autocmd BufNewFile,BufReadPost *.yml set autoindent
+    autocmd BufNewFile,BufReadPost *.yml set tabstop=2
+    autocmd BufNewFile,BufReadPost *.yml set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.yml set shiftwidth=2
 
 
-    autocmd BufNewFile,BufReadPost *.cpp set tabstop=3
-    autocmd BufNewFile,BufReadPost *.cpp set softtabstop=3
-    autocmd BufNewFile,BufReadPost *.cpp set shiftwidth=3
 
-    autocmd BufNewFile,BufReadPost *.h set tabstop=3
-    autocmd BufNewFile,BufReadPost *.h set softtabstop=3
-    autocmd BufNewFile,BufReadPost *.h set shiftwidth=3
+    autocmd BufNewFile,BufReadPost *.cpp set tabstop=2
+    autocmd BufNewFile,BufReadPost *.cpp set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.cpp set shiftwidth=2
+
+    autocmd BufNewFile,BufReadPost *.h set tabstop=2
+    autocmd BufNewFile,BufReadPost *.h set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.h set shiftwidth=2
 
     autocmd BufNewFile,BufReadPost *.yaml set tabstop=4
     autocmd BufNewFile,BufReadPost *.yaml set softtabstop=4
     autocmd BufNewFile,BufReadPost *.yaml set shiftwidth=4
 
+    autocmd BufNewFile,BufReadPost *.zone set noexpandtab
 
-    "autocmd BufNewFile,BufReadPost *.js set tabstop=2
-    "autocmd BufNewFile,BufReadPost .js set softtabstop=2
     
     autocmd BufNewFile,BufReadPost *.thcos set filetype=mips
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
     autocmd BufNewFile,BufReadPost *.rule set filetype=json
     autocmd BufNewFile,BufReadPost *.rule set tabstop=2
     autocmd BufNewFile,BufReadPost *.rule set softtabstop=2
     autocmd BufNewFile,BufReadPost *.rule set shiftwidth=2
+
+    autocmd BufNewFile,BufReadPost *.tex set expandtab
+    autocmd BufNewFile,BufReadPost *.tex set tabstop=4
+    autocmd BufNewFile,BufReadPost *.tex set softtabstop=4
+    autocmd BufNewFile,BufReadPost *.tex set shiftwidth=2
     " auto compile 
+    au BufWritePost *.coffee call CompileCoffee()
+    "au BufWritePost *.md call CompileMarkdown()
     au BufWritePost *.thcos call CompileThcoMips()
 
 
@@ -1180,6 +1208,8 @@ autocmd FileType python,shell set commentstring=#\ %s                 " 设置Py
 autocmd FileType mako set cms=##\ %s"
 
 nmap YY maxw
+
+let g:languatetool_jar='/usr/share/java/languagetool/languagetool-commandline.jar'
 
 "swithing between files
 "nmap <C-Tab> <C-w>w
