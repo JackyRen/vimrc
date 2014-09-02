@@ -179,7 +179,7 @@ Bundle 'taglist.vim'
 "Bundle 'vimim.vim'
 Bundle 'ZenCoding.vim'
 Bundle 'css_color.vim'
-Bundle 'gsession.vim'
+"Bundle 'gsession.vim'
 Bundle 'boost.vim'
 "Bundle 'JackyRen/header.vim.git' 
 Bundle 'asmx86_64'
@@ -190,7 +190,7 @@ Bundle 'Shougo/neocomplcache.vim'
 
 
 "==auto complete==
-"Bundle "Valloric/YouCompleteMe.git"
+Bundle "Valloric/YouCompleteMe.git"
 Bundle "vim-scripts/LanguageTool"
 "==for javascript=="
 "Bundle 'hallettj/jslint.vim'
@@ -250,10 +250,10 @@ set expandtab                " 将tab展开
 set tabstop=4                " 设置tab键的宽度
 set softtabstop=4            " 设置tab键的宽度
 set shiftwidth=4             " 换行时行间交错使用4个空格
+set cindent shiftwidth=4     " 自动缩进4空格
 set autoindent               " 自动对齐
 "set backspace=2              " 设置退格键可用
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
-set cindent shiftwidth=4     " 自动缩进4空格
 set smartindent              " 智能自动缩进
 set ai!                      " 设置自动缩进
 set nu!                      " 显示行号
@@ -851,13 +851,13 @@ if !exists("header_protecter")
 
 
 
-    autocmd BufNewFile,BufReadPost *.cpp set tabstop=3
-    autocmd BufNewFile,BufReadPost *.cpp set softtabstop=3
-    autocmd BufNewFile,BufReadPost *.cpp set shiftwidth=3
+    autocmd BufNewFile,BufReadPost *.cpp set tabstop=2
+    autocmd BufNewFile,BufReadPost *.cpp set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.cpp set shiftwidth=2
 
-    autocmd BufNewFile,BufReadPost *.h set tabstop=3
-    autocmd BufNewFile,BufReadPost *.h set softtabstop=3
-    autocmd BufNewFile,BufReadPost *.h set shiftwidth=3
+    autocmd BufNewFile,BufReadPost *.h set tabstop=2
+    autocmd BufNewFile,BufReadPost *.h set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.h set shiftwidth=2
 
     autocmd BufNewFile,BufReadPost *.yaml set tabstop=4
     autocmd BufNewFile,BufReadPost *.yaml set softtabstop=4
@@ -867,6 +867,7 @@ if !exists("header_protecter")
 
     
     autocmd BufNewFile,BufReadPost *.thcos set filetype=mips
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
     autocmd BufNewFile,BufReadPost *.rule set filetype=json
     autocmd BufNewFile,BufReadPost *.rule set tabstop=2
@@ -877,9 +878,6 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.tex set tabstop=4
     autocmd BufNewFile,BufReadPost *.tex set softtabstop=4
     autocmd BufNewFile,BufReadPost *.tex set shiftwidth=2
-    " auto compile 
-    au BufWritePost *.coffee call CompileCoffee()
-    "au BufWritePost *.md call CompileMarkdown()
     " auto compile 
     au BufWritePost *.coffee call CompileCoffee()
     "au BufWritePost *.md call CompileMarkdown()
