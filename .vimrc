@@ -11,6 +11,7 @@
 " Ctrl + K                   --光标移上一行行尾
 " Ctrl + L                   --光标移行尾
 " Ctrl + Z                   --取代ESC模式键 [和部分软件的快捷键有冲突]
+" Ctrl + O                   --编辑模式下开新的一行
 """""""" Ctrl + F                   --编译 [支持C/C++、Java、Haskell]
 """""""" Ctrl + R                   --运行 [支持C/C++、Java、Haskell、Lua、Perl、Python、Ruby]
 " Ctrl + ]                   --转到函数定义
@@ -478,16 +479,25 @@ imap <c-j> <Down>
 " Ctrl + K     
 imap <c-k> <Up>
 
-imap <c-w> <Right><Esc>wi
-imap <c-b> <Right><Esc>bi
-
 " Ctrl + L    
 imap <c-l> <Right>
 
+" Ctrl + O
+imap <c-o> <ESC>o
+
+
+imap <c-w> <Right><Esc>wi
+imap <c-b> <Right><Esc>bi
+
 imap <c-e> <End>
+
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
 
 " Ctrl + Z            
 imap <c-z> <ESC>
+nmap <c-z> <ESC>
 
 " Ctrl + c            在当前行添加C/C++/Java语言的多行注释 [插入模式]
 "imap <c-c> /*  */<ESC>hhi
