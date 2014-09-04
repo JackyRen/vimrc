@@ -12,6 +12,7 @@
 " Ctrl + L                   --光标移行尾
 " Ctrl + Z                   --取代ESC模式键 [和部分软件的快捷键有冲突]
 " Ctrl + O                   --编辑模式下开新的一行
+" original c-z is suspend
 """""""" Ctrl + F                   --编译 [支持C/C++、Java、Haskell]
 """""""" Ctrl + R                   --运行 [支持C/C++、Java、Haskell、Lua、Perl、Python、Ruby]
 " Ctrl + ]                   --转到函数定义
@@ -332,6 +333,7 @@ noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
 inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
 " map jsbeautify to F4 "
 nnoremap <F4> :call g:Jsbeautify()<CR>  
+
 
 "print 
 if has('unix')
@@ -1224,3 +1226,17 @@ let g:languatetool_jar='/usr/share/java/languagetool/languagetool-commandline.ja
 "swithing between files
 "nmap <C-Tab> <C-w>w
 "nmap <C-S-Tab><C-w>W
+"
+"
+"update indent
+function EnableIndent()
+    set smartindent
+    set autoindent
+    set cindent
+endfunction
+
+function DisableIndent()
+    set nosmartindent
+    set noautoindent
+    set nocindent
+endfunction
