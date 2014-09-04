@@ -1217,3 +1217,17 @@ let g:languatetool_jar='/usr/share/java/languagetool/languagetool-commandline.ja
 "swithing between files
 "nmap <C-Tab> <C-w>w
 "nmap <C-S-Tab><C-w>W
+"
+"
+"update indent
+function EnableIndent()
+    set smartindent
+    set autoindent
+    set cindent
+endfunction
+
+function DisableIndent()
+    set nosmartindent
+    set noautoindent
+    set nocindent
+endfunction
