@@ -499,6 +499,7 @@ inoremap <silent> <C-S>         <C-O>:update<CR>
 
 " Ctrl + Z            
 imap <c-z> <ESC>
+vmap <c-z> <ESC>
 nmap <c-z> <ESC>
 
 " Ctrl + c            在当前行添加C/C++/Java语言的多行注释 [插入模式]
