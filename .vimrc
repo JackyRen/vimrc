@@ -279,6 +279,7 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep"
 set showcmd        " display incomplete commands
 
+set relativenumber           " 相对行号
 syntax enable                " 打开语法高亮
 syntax on                    " 开启文件类型侦测
 filetype indent on           " 针对不同的文件类型采用不同的缩进格式
@@ -498,8 +499,8 @@ vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
 
 " Ctrl + Z            
-imap <c-z> <ESC>
-nmap <c-z> <ESC>
+imap <C-z> <ESC>
+nmap <C-z> <ESC>
 
 " Ctrl + c            在当前行添加C/C++/Java语言的多行注释 [插入模式]
 "imap <c-c> /*  */<ESC>hhi
