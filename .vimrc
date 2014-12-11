@@ -333,9 +333,9 @@ set tags+=~/.vim/tags/linuxkernel
 set tags+=~/.vim/tags/sdl 
 set tags+=~/.vim/tags/qt4 
 " build tags of your own project with CTRL+F12 
-map <c-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR> 
-noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
-inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
+"map <c-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR> 
+"noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
+"inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
 " map jsbeautify to F4 "
 nnoremap <F4> :call g:Jsbeautify()<CR>  
 
@@ -828,7 +828,7 @@ function! ShowFunc()
     let gp_s = &grepprg
 
     let &grepformat = '%*\k%*\sfunction%*\s%l%*\s%f %*\s%m'
-    let &grepprg = 'ctags -x --c-types=f --sort=no -o -'
+"    let &grepprg = 'ctags -x --c-types=f --sort=no -o -'
 
     write
     silent! grep %
