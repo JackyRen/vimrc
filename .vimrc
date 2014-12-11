@@ -325,13 +325,13 @@ set nocp
 filetype plugin on 
 " configure tags - add additional tags here or comment out not-used ones 
 " load user definition tags 
-set tags+=./../tags 
-set tags+=~/.vim/tags/stl 
-set tags+=~/.vim/tags/c
-" linux header file tag
-set tags+=~/.vim/tags/linuxkernel
-set tags+=~/.vim/tags/sdl 
-set tags+=~/.vim/tags/qt4 
+"set tags+=./../tags 
+"set tags+=~/.vim/tags/stl 
+"set tags+=~/.vim/tags/c
+"" linux header file tag
+"set tags+=~/.vim/tags/linuxkernel
+"set tags+=~/.vim/tags/sdl 
+"set tags+=~/.vim/tags/qt4 
 " build tags of your own project with CTRL+F12 
 "map <c-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR> 
 "noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr> 
