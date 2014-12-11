@@ -121,7 +121,7 @@ Bundle "rking/ag.vim"
 Bundle "terryma/vim-multiple-cursors"
 
 " ejs
-"Bundle "briancollins/vim-jst"
+Bundle "briancollins/vim-jst"
 
 "python predict
 Bundle "rkulla/pydiction"
@@ -227,7 +227,6 @@ Bundle "stephpy/vim-yaml"
 
 "AuthorInfo
 Bundle 'vim-scripts/AuthorInfo'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/DrawIt'
 
 "math
@@ -235,10 +234,15 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-"################## end Vundle ###############
 
 Bundle "vimwiki/vimwiki"
 Bundle "matthias-guenther/hammer.vim"
+
+"统一粘贴板
+Bundle "ardagnir/united-front"
+"################## end Vundle ###############
+
+Bundle "scrooloose/nerdcommenter"
 
 
 
@@ -545,6 +549,10 @@ endfunc
 func! CompileCoffee()
     exec "w"
     exec "!coffee -cb %"
+endfunc
+func! CompileJade()
+    exec "w"
+    exec "!jade -P %"
 endfunc
 
 func! CompileMarkdown()
@@ -893,6 +901,7 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.tex set shiftwidth=2
     " auto compile 
     au BufWritePost *.coffee call CompileCoffee()
+    au BufWritePost *.jade call CompileJade()
     "au BufWritePost *.md call CompileMarkdown()
     au BufWritePost *.thcos call CompileThcoMips()
 
@@ -906,7 +915,7 @@ if !exists("header_protecter")
     " For all text files set 'textwidth' to 78 characters.
     " 每行超过80个的字符用下划线标示
     "au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
-    au BufRead,BufNewFile *.asm,*.java,*.cs,*.lua,*.pl,*.pm,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
+    au BufRead,BufNewFile *.asm,*.java,*.cs,*.pl,*.pm,*.rb,*.erb,*.hs,*.vim call HighlightMorethan80()
     
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
