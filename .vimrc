@@ -853,6 +853,10 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.coffee set softtabstop=2
     autocmd BufNewFile,BufReadPost *.coffee set shiftwidth=2
 
+    autocmd BufNewFile,BufReadPost *.m set tabstop=2
+    autocmd BufNewFile,BufReadPost *.m set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.m set shiftwidth=2
+
     autocmd BufNewFile,BufReadPost *.js set autoindent
     autocmd BufNewFile,BufReadPost *.js set tabstop=2
     autocmd BufNewFile,BufReadPost *.js set softtabstop=2
@@ -864,6 +868,9 @@ if !exists("header_protecter")
     autocmd BufNewFile,BufReadPost *.yml set shiftwidth=2
 
 
+    autocmd BufNewFile,BufReadPost *.prototxt set tabstop=2
+    autocmd BufNewFile,BufReadPost *.prototxt set softtabstop=2
+    autocmd BufNewFile,BufReadPost *.prototxt set shiftwidth=2
 
     autocmd BufNewFile,BufReadPost *.cpp set tabstop=2
     autocmd BufNewFile,BufReadPost *.cpp set softtabstop=2
